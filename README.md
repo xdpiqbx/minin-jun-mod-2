@@ -2,6 +2,18 @@
 
 ## 2. Компоненты
 
+---
+
+[Counter.jsx](https://github.com/xdpiqbx/minin-jun-mod-2/blob/002-components-counter-proj/src/components/counter.jsx)
+
+Для клонирования этой ветки
+
+```code
+git clone https://github.com/xdpiqbx/minin-jun-mod-2.git -b 002-components-counter-proj
+```
+
+Тут использовались
+
 ```code
 npx create-react-app
 npm i bootstrap@5.1.0 -E
