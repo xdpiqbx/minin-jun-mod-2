@@ -1,6 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import './index.css';
+// import App from './App';
+import reportWebVitals from './reportWebVitals';
+import 'bootstrap/dist/css/bootstrap.css';
+import Counter from '../src/components/counter';
 
-const element = <h1>Hello World! My name is [xdpiqbx]</h1>;
+ReactDOM.render(
+  <React.StrictMode>
+    <Counter />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
 
-ReactDOM.render(element, document.getElementById('root'));
+reportWebVitals();
