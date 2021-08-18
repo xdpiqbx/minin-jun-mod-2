@@ -1,8 +1,6 @@
-# Getting Started with Create React App
+# Модуль 2. Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
----
+## 2. Компоненты
 
 ```code
 npx create-react-app
@@ -11,11 +9,9 @@ npm i bootstrap@5.1.0 -E
 
 Import Bootstrap to `index.js` -> `import 'bootstrap/dist/css/bootstrap.css';`
 
-```git
-git remote add origin https://github.com/xdpiqbx/minin-jun-mod-2.git
-git push -u origin 002-components-counter-proj
+---
 
-```
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ---
 
