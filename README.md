@@ -1,15 +1,15 @@
 # Модуль 2. Frontend
 
-## 2. Компоненты
+## 2.1. Компоненты | Курсовой проект
+
+### Fast Company
 
 ---
-
-[Counter.jsx](https://github.com/xdpiqbx/minin-jun-mod-2/blob/002-components-counter-proj/src/components/counter.jsx)
 
 Для клонирования этой ветки
 
 ```code
-git clone https://github.com/xdpiqbx/minin-jun-mod-2.git -b 002-components-counter-proj
+git clone https://github.com/xdpiqbx/minin-jun-mod-2.git -b 002-1-components .
 ```
 
 Тут использовались
