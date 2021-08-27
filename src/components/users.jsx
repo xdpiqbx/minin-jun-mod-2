@@ -1,5 +1,6 @@
 import User from './User';
-const Users = ({ users, removeUserHandler }) => {
+
+const Users = ({ users, removeUserHandler, onToggleFavorite }) => {
   return (
     <table className="table">
       <thead>
@@ -19,6 +20,7 @@ const Users = ({ users, removeUserHandler }) => {
             key={user._id}
             user={user}
             onRemoveUserHandler={removeUserHandler}
+            onToggleFavorite={onToggleFavorite}
           />
         ))}
       </tbody>

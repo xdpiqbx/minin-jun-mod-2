@@ -16,13 +16,29 @@ const App = () => {
     setUsers(users.filter((user) => user._id !== id));
   };
 
+  const toggleFavorite = (userId) => {
+    setUsers(
+      users.filter((user) => {
+        if (user._id === userId) {
+          user.isFavorite = !user.isFavorite;
+          return user;
+        }
+        return user;
+      })
+    );
+  };
+
   return (
     <>
       <Phrase number={users.length} words={words} />
       {users.length === 0 ? (
         ''
       ) : (
-        <Users users={users} removeUserHandler={removeUser} />
+        <Users
+          users={users}
+          removeUserHandler={removeUser}
+          onToggleFavorite={toggleFavorite}
+        />
       )}
     </>
   );

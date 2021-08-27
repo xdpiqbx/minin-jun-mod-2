@@ -1,12 +1,7 @@
-import { useState } from 'react';
 import BookMark from './BookMark';
 import QualitieBadge from './QualitieBadge';
 
-const User = ({ user, onRemoveUserHandler }) => {
-  const [isFavorite, setIsFavorite] = useState(false);
-  const toggleFavorite = () => {
-    setIsFavorite(!isFavorite);
-  };
+const User = ({ user, onRemoveUserHandler, onToggleFavorite }) => {
   return (
     <tr>
       <td>{user.name}</td>
@@ -19,7 +14,10 @@ const User = ({ user, onRemoveUserHandler }) => {
       <td>{user.completedMeetings}</td>
       <td>{user.rate}/5</td>
       <td>
-        <BookMark isFavorite={isFavorite} onToggleFavorite={toggleFavorite} />
+        <BookMark
+          isFavorite={user.isFavorite}
+          onToggleFavorite={() => onToggleFavorite(user._id)}
+        />
       </td>
       <td>
         <button
