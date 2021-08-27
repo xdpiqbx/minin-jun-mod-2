@@ -24,20 +24,21 @@ const Counter = ({
     onDelete(counterId);
   };
 
+  const handleIncrent = () => {
+    onIncrement(id, cValue);
+  };
+  const handleDecrement = () => {
+    onDecrement(id, cValue);
+  };
+
   return (
     <div>
       <h4>{name}</h4>
       <span className={getBadgeClasses()}>{formCount()}</span>
-      <button
-        className="btn btn-secondary btn-sm"
-        onClick={() => onIncrement(id)}
-      >
+      <button className="btn btn-secondary btn-sm" onClick={handleIncrent}>
         Increment
       </button>
-      <button
-        className="btn btn-secondary btn-sm"
-        onClick={() => onDecrement(id)}
-      >
+      <button className="btn btn-secondary btn-sm" onClick={handleDecrement}>
         Decrement
       </button>
       <button
