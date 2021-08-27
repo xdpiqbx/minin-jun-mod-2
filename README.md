@@ -1,6 +1,6 @@
 # Модуль 2. Frontend
 
-## 2.1. Компоненты | Курсовой проект
+## 3. Композиция компонентов
 
 ### Fast Company
 
@@ -9,7 +9,7 @@
 Для клонирования этой ветки
 
 ```code
-git clone https://github.com/xdpiqbx/minin-jun-mod-2.git -b 002-1-components .
+git clone https://github.com/xdpiqbx/minin-jun-mod-2.git -b 003-1-components-composition-company .
 ```
 
 Тут использовались
@@ -20,39 +20,3 @@ npm i bootstrap@5.1.0 -E
 ```
 
 Import Bootstrap to `index.js` -> `import 'bootstrap/dist/css/bootstrap.css';`
-
----
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
----
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
