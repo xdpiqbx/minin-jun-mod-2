@@ -1,11 +1,19 @@
+import { useEffect, useState } from "react";
+
 const Pagination = ({ contentLength, usersPerPage, currentPage, setPage }) => {
+  const [pagination, setPagination] = useState([])
+
+  useEffect(() => {
+    makeNumPagesArr()
+  }, [])
+  
   const makeNumPagesArr = () => {
     const pages = Math.ceil(contentLength / usersPerPage);
     const pagesArr = [];
     for (let index = 0; index < pages; index++) {
-      pagesArr.push(index);
+      pagesArr.push(index+1);
     }
-    return pagesArr;
+    setPagination(pagesArr);
   };
 
   const pageHandler = (event) => {
@@ -27,16 +35,18 @@ const Pagination = ({ contentLength, usersPerPage, currentPage, setPage }) => {
     });
   };
 
+  console.log(pagination);
+
   return (
     <nav aria-label="Page navigation example">
       <ul className="pagination">
-        {makeNumPagesArr().map((page) => (
+        {pagination.map((page) => (
           <li
             key={page}
             className={`page-item ${currentPage === page ? 'active' : ''}`} // Error
           >
             <a onClick={pageHandler} className="page-link" href="#">
-              {page + 1}
+              {page}
             </a>
           </li>
         ))}
