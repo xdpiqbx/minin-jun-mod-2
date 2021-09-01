@@ -1,17 +1,29 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-const Pagination = ({ contentLength, usersPerPage, currentPage, setPage }) => {
-  const [pagination, setPagination] = useState([])
+const Pagination = ({
+  contentLength,
+  usersPerPage,
+  currentPage,
+  setPage,
+  cropUsersPerPage,
+}) => {
+  const [pagination, setPagination] = useState([]);
 
   useEffect(() => {
-    makeNumPagesArr()
-  }, [])
-  
+    makeNumPagesArr();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [contentLength]);
+
+  useEffect(() => {
+    cropUsersPerPage();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentPage]);
+
   const makeNumPagesArr = () => {
     const pages = Math.ceil(contentLength / usersPerPage);
     const pagesArr = [];
     for (let index = 0; index < pages; index++) {
-      pagesArr.push(index+1);
+      pagesArr.push(index + 1);
     }
     setPagination(pagesArr);
   };
@@ -35,17 +47,15 @@ const Pagination = ({ contentLength, usersPerPage, currentPage, setPage }) => {
     });
   };
 
-  console.log(pagination);
-
   return (
     <nav aria-label="Page navigation example">
       <ul className="pagination">
         {pagination.map((page) => (
           <li
             key={page}
-            className={`page-item ${currentPage === page ? 'active' : ''}`} // Error
+            className={`page-item ${currentPage === page ? 'active' : ''}`}
           >
-            <a onClick={pageHandler} className="page-link" href="#">
+            <a onClick={pageHandler} className="page-link" href="/">
               {page}
             </a>
           </li>

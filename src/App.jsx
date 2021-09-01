@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import API from './API';
-import Users from './components/users';
+import Users from './components/Users';
 import Phrase from './components/Phrase';
 import { generateWords } from './helpers/helpers';
-import Pagination from './components/Pagination';
 
 const App = () => {
   const [users, setUsers] = useState(API.users.fetchAll());
   const [words, setWords] = useState('человек тусанёт');
-  const [currentPage, setCurrentPage] = useState(1);
-
-  const usersPerPage = 4;
 
   useEffect(() => {
     generateWords(users.length, setWords);
@@ -44,12 +40,6 @@ const App = () => {
           onToggleFavorite={toggleFavorite}
         />
       )}
-      <Pagination
-        contentLength={users.length}
-        usersPerPage={usersPerPage}
-        currentPage={currentPage}
-        setPage={setCurrentPage}
-      />
     </>
   );
 };
