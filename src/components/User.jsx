@@ -1,3 +1,5 @@
+import React from 'react';
+import PropType from 'prop-types';
 import BookMark from './BookMark';
 import QualitieBadge from './QualitieBadge';
 
@@ -30,6 +32,12 @@ const User = ({ user, onRemoveUserHandler, onToggleFavorite }) => {
       </td>
     </tr>
   );
+};
+
+User.propTypes = {
+  user: PropType.object.isRequired,
+  onRemoveUserHandler: PropType.func.isRequired,
+  onToggleFavorite: PropType.func.isRequired
 };
 
 export default User;

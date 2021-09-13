@@ -1,29 +1,15 @@
-import { useEffect, useState } from 'react';
-import Pagination from './Pagination';
+import React, { useState } from 'react';
+import PropType from 'prop-types';
 import User from './User';
-
-const Users = ({ users, removeUserHandler, onToggleFavorite }) => {
-  const usersPerPage = 4;
-
+import Pagination from './Pagination';
+import { paginate } from '../utils/paginate';
+const Users = ({ users: allUsers, removeUserHandler, onToggleFavorite }) => {
+  const pageSize = 4;
   const [currentPage, setCurrentPage] = useState(1);
-  const [slicedUsers, setSlicedUsers] = useState([]);
-
-  useEffect(() => {
-    cropUsersPerPage();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [users.length]);
-
-  useEffect(() => {
-    if (slicedUsers.length % usersPerPage === 0) {
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [slicedUsers.length]);
-
-  const cropUsersPerPage = () => {
-    let start = usersPerPage * (currentPage - 1);
-    setSlicedUsers(users.slice(start, start + usersPerPage));
+  const handlePageChange = (pageIndex) => {
+    setCurrentPage(pageIndex);
   };
-
+  const users = paginate(allUsers, currentPage, pageSize);
   return (
     <>
       <table className="table">
@@ -39,7 +25,7 @@ const Users = ({ users, removeUserHandler, onToggleFavorite }) => {
           </tr>
         </thead>
         <tbody>
-          {slicedUsers.map((user) => (
+          {users.map((user) => (
             <User
               key={user._id}
               user={user}
@@ -50,14 +36,19 @@ const Users = ({ users, removeUserHandler, onToggleFavorite }) => {
         </tbody>
       </table>
       <Pagination
-        contentLength={users.length}
-        usersPerPage={usersPerPage}
+        itemsCount={allUsers.length}
+        pageSize={pageSize}
         currentPage={currentPage}
-        setPage={setCurrentPage}
-        cropUsersPerPage={cropUsersPerPage}
+        onPageChange={handlePageChange}
       />
     </>
   );
+};
+
+Users.propTypes = {
+  users: PropType.array.isRequired,
+  removeUserHandler: PropType.func.isRequired,
+  onToggleFavorite: PropType.func.isRequired
 };
 
 export default Users;
