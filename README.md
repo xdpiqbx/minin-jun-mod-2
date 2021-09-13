@@ -1,6 +1,6 @@
 # Модуль 2. Frontend
 
-## 3. Композиция компонентов
+## 4. Пагинация
 
 ### Fast Company
 
@@ -9,7 +9,7 @@
 Для клонирования этой ветки
 
 ```code
-git clone https://github.com/xdpiqbx/minin-jun-mod-2.git -b 003-1-components-composition-company .
+git clone https://github.com/xdpiqbx/minin-jun-mod-2.git -b 004-pagination-company-mentor .
 ```
 
 Тут использовались
