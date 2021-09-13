@@ -7,7 +7,6 @@ const Users = ({ users: allUsers, removeUserHandler, onToggleFavorite }) => {
   const pageSize = 4;
   const [currentPage, setCurrentPage] = useState(1);
   const handlePageChange = (pageIndex) => {
-    console.log('page: ', pageIndex);
     setCurrentPage(pageIndex);
   };
   const users = paginate(allUsers, currentPage, pageSize);

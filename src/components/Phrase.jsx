@@ -1,6 +1,6 @@
 import React from 'react';
 import PropType from 'prop-types';
-const Phrase = ({ number, word }) => {
+const Phrase = ({ number, words }) => {
   return number === 0 ? (
     <h1>
       <span className="badge bg-danger">Никто с тобой не тусанёт</span>
@@ -8,7 +8,7 @@ const Phrase = ({ number, word }) => {
   ) : (
     <h1>
       <span className="badge bg-primary">
-        {number} {word} с тобой сегодня
+        {number} {words} с тобой сегодня
       </span>
     </h1>
   );
@@ -16,7 +16,7 @@ const Phrase = ({ number, word }) => {
 
 Phrase.propTypes = {
   number: PropType.number.isRequired,
-  word: PropType.string.isRequired
+  words: PropType.string.isRequired
 };
 
 export default Phrase;
