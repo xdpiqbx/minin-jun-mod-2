@@ -5,7 +5,7 @@ const professions = {
   engineer: { _id: '67rdca3eeb7f6fgeed471822', name: 'Инженер' },
   actor: { _id: '67rdca3eeb7f6fgeed471824', name: 'Актер' },
   cook: { _id: '67rdca3eeb7f6fgeed471829', name: 'Повар' }
-};
+}
 const qualities = {
   tedious: {
     _id: '67rdca3eeb7f6fgeed471198',
@@ -33,7 +33,7 @@ const qualities = {
     name: 'Неуверенный',
     color: 'dark'
   }
-};
+}
 
 const users = [
   {
@@ -132,7 +132,7 @@ const users = [
     completedMeetings: 434,
     rate: 5
   }
-];
+]
 export function fetchAll() {
-  return users;
+  return users
 }

@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import PropType from 'prop-types';
-import User from './User';
-import Pagination from './Pagination';
-import { paginate } from '../utils/paginate';
+import React, { useState } from 'react'
+import PropType from 'prop-types'
+import User from './User'
+import Pagination from './Pagination'
+import { paginate } from '../utils/paginate'
 const Users = ({ users: allUsers, removeUserHandler, onToggleFavorite }) => {
-  const pageSize = 4;
-  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 4
+  const [currentPage, setCurrentPage] = useState(1)
   const handlePageChange = (pageIndex) => {
-    setCurrentPage(pageIndex);
-  };
-  const users = paginate(allUsers, currentPage, pageSize);
+    setCurrentPage(pageIndex)
+  }
+  const users = paginate(allUsers, currentPage, pageSize)
   return (
     <>
       <table className="table">
@@ -42,13 +42,13 @@ const Users = ({ users: allUsers, removeUserHandler, onToggleFavorite }) => {
         onPageChange={handlePageChange}
       />
     </>
-  );
-};
+  )
+}
 
 Users.propTypes = {
   users: PropType.array.isRequired,
   removeUserHandler: PropType.func.isRequired,
   onToggleFavorite: PropType.func.isRequired
-};
+}
 
-export default Users;
+export default Users
