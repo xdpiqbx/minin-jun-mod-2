@@ -1,17 +1,34 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import PropType from 'prop-types'
 import User from './User'
 import Pagination from './Pagination'
 import { paginate } from '../utils/paginate'
+import GroupList from './GroupList'
+import API from '../API'
 const Users = ({ users: allUsers, removeUserHandler, onToggleFavorite }) => {
   const pageSize = 4
   const [currentPage, setCurrentPage] = useState(1)
+  const [professions, setProfessions] = useState()
+  useEffect(() => {
+    API.professions.fetchAll().then((data) => setProfessions(data))
+  }, [])
   const handlePageChange = (pageIndex) => {
     setCurrentPage(pageIndex)
   }
   const users = paginate(allUsers, currentPage, pageSize)
+  const handleItemSelect = (params) => {
+    console.log(params)
+  }
   return (
     <>
+      {professions && (
+        <GroupList
+          items={professions}
+          onItemSelect={handleItemSelect}
+          valProp="_id"
+          contentProp="name"
+        />
+      )}
       <table className="table">
         <thead>
           <tr key={'user._id'}>
