@@ -15,6 +15,11 @@ const GroupList = ({ items, valProp, contentProp }) => {
   )
 }
 
+GroupList.defaultProps = {
+  valProp: '_id',
+  contentProp: 'name'
+}
+
 GroupList.propTypes = {
   items: PropTypes.object.isRequired,
   valProp: PropTypes.string.isRequired,
