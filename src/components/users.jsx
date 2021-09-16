@@ -11,13 +11,7 @@ const Users = ({ users: allUsers, removeUserHandler, onToggleFavorite }) => {
   const [professions, setProfessions] = useState()
   const [selectedProf, setSelectedProf] = useState()
   useEffect(() => {
-    API.professions
-      .fetchAll()
-      .then((data) =>
-        setProfessions(
-          Object.assign(data, { allProfession: { name: 'Все профессии' } })
-        )
-      )
+    API.professions.fetchAll().then((data) => setProfessions(data))
   }, [])
   const handlePageChange = (pageIndex) => {
     setCurrentPage(pageIndex)
@@ -25,22 +19,29 @@ const Users = ({ users: allUsers, removeUserHandler, onToggleFavorite }) => {
   const handleProfessionSelect = (item) => {
     setSelectedProf(item)
   }
-  const filteredUsers =
-    selectedProf && selectedProf._id
-      ? allUsers.filter((user) => user.profession === selectedProf)
-      : allUsers
+  const filteredUsers = selectedProf
+    ? allUsers.filter((user) => user.profession === selectedProf)
+    : allUsers
   const users = paginate(filteredUsers, currentPage, pageSize)
+  const clearFilter = () => {
+    setSelectedProf(undefined)
+  }
   return (
     <>
       {professions && (
-        <GroupList
-          items={professions}
-          onItemSelect={handleProfessionSelect}
-          selectedItem={selectedProf}
-          // defaultProps
-          // valProp="_id"
-          // contentProp="name"
-        />
+        <>
+          <GroupList
+            items={professions}
+            onItemSelect={handleProfessionSelect}
+            selectedItem={selectedProf}
+            // defaultProps
+            // valProp="_id"
+            // contentProp="name"
+          />
+          <button className="btn btn-secondary mt-2" onClick={clearFilter}>
+            Очистить фильтр
+          </button>
+        </>
       )}
       <table className="table">
         <thead>
