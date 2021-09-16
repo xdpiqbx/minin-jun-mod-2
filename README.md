@@ -35,4 +35,4 @@ eslint --init
 Import Bootstrap to `index.js` -> `import 'bootstrap/dist/css/bootstrap.css';`
 
 <!-- https://vladilen.ru/pl/teach/control/lesson/view?id=201180003&editMode=0 -->
-<!-- 6. [КП] Свойства по умолчанию -->
+<!-- 8. [КП] Реализация фильтрации -->
