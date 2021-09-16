@@ -11,15 +11,25 @@ const Users = ({ users: allUsers, removeUserHandler, onToggleFavorite }) => {
   const [professions, setProfessions] = useState()
   const [selectedProf, setSelectedProf] = useState()
   useEffect(() => {
-    API.professions.fetchAll().then((data) => setProfessions(data))
+    API.professions
+      .fetchAll()
+      .then((data) =>
+        setProfessions(
+          Object.assign(data, { allProfession: { name: 'Все профессии' } })
+        )
+      )
   }, [])
   const handlePageChange = (pageIndex) => {
     setCurrentPage(pageIndex)
   }
-  const users = paginate(allUsers, currentPage, pageSize)
   const handleProfessionSelect = (item) => {
     setSelectedProf(item)
   }
+  const filteredUsers =
+    selectedProf && selectedProf._id
+      ? allUsers.filter((user) => user.profession === selectedProf)
+      : allUsers
+  const users = paginate(filteredUsers, currentPage, pageSize)
   return (
     <>
       {professions && (
