@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import PropType from 'prop-types'
 import Phrase from './Phrase'
-import User from './User'
+import UsersTable from './UsersTable'
+import GroupList from './GroupList'
 import Pagination from './Pagination'
 import { paginate } from '../utils/paginate'
-import GroupList from './GroupList'
 import { generateWords } from '../helpers/helpers'
 import API from '../API'
 
@@ -62,29 +62,11 @@ const Users = ({ users: allUsers, removeUserHandler, onToggleFavorite }) => {
       )}
       <div className="d-flex flex-column">
         <Phrase number={count} words={words} />
-        <table className="table">
-          <thead>
-            <tr key={'user._id'}>
-              <th scope="col">Имя</th>
-              <th scope="col">Качества</th>
-              <th scope="col">Профессия</th>
-              <th scope="col">Встретился, раз</th>
-              <th scope="col">Оценка</th>
-              <th scope="col">Избранное</th>
-              <th scope="col">&nbsp;</th>
-            </tr>
-          </thead>
-          <tbody>
-            {users.map((user) => (
-              <User
-                key={user._id}
-                user={user}
-                onRemoveUserHandler={removeUserHandler}
-                onToggleFavorite={onToggleFavorite}
-              />
-            ))}
-          </tbody>
-        </table>
+        <UsersTable
+          users={users}
+          removeUserHandler={removeUserHandler}
+          onToggleFavorite={onToggleFavorite}
+        />
         <div className="d-flex justify-content-center">
           <Pagination
             itemsCount={count}
