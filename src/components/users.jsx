@@ -30,9 +30,14 @@ const Users = ({ users: allUsers, removeUserHandler, onToggleFavorite }) => {
   const handleProfessionSelect = (item) => {
     setSelectedProf(item)
   }
-  const filteredUsers = selectedProf
-    ? allUsers.filter((user) => user.profession === selectedProf)
-    : allUsers
+
+  const customFilter = (allUsers) => {
+    return allUsers.filter(
+      (user) => JSON.stringify(user.profession) === JSON.stringify(selectedProf)
+    )
+  }
+  const filteredUsers = selectedProf ? customFilter(allUsers) : allUsers
+
   const count = filteredUsers.length
   const users = paginate(filteredUsers, currentPage, pageSize)
   const clearFilter = () => {
