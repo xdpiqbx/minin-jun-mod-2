@@ -33,3 +33,5 @@ eslint --init
 ```
 
 Import Bootstrap to `index.js` -> `import 'bootstrap/dist/css/bootstrap.css';`
+
+Start from 3. [КП] Реализация сортировки

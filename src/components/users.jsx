@@ -27,6 +27,9 @@ const Users = ({ users: allUsers, removeUserHandler, onToggleFavorite }) => {
   const handlePageChange = (pageIndex) => {
     setCurrentPage(pageIndex)
   }
+  const handleSort = (criteria) => {
+    console.log(criteria)
+  }
   const handleProfessionSelect = (item) => {
     setSelectedProf(item)
   }
@@ -66,6 +69,7 @@ const Users = ({ users: allUsers, removeUserHandler, onToggleFavorite }) => {
           users={users}
           removeUserHandler={removeUserHandler}
           onToggleFavorite={onToggleFavorite}
+          onSort={handleSort}
         />
         <div className="d-flex justify-content-center">
           <Pagination
