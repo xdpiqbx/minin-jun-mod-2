@@ -1,6 +1,6 @@
 # Модуль 2. Frontend
 
-## 4. Пагинация
+## 7. Сортировка
 
 ### Fast Company
 
@@ -9,7 +9,7 @@
 Для клонирования этой ветки
 
 ```code
-git clone https://github.com/xdpiqbx/minin-jun-mod-2.git -b 005-filtration-company .
+git clone https://github.com/xdpiqbx/minin-jun-mod-2.git -b 007-sort .
 ```
 
 Тут использовались
