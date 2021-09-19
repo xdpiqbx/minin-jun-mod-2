@@ -20,18 +20,23 @@ const Users = ({ users: allUsers, removeUserHandler, onToggleFavorite }) => {
   useEffect(() => {
     API.professions.fetchAll().then((data) => setProfessions(data))
   }, [])
+
   useEffect(() => {
     setCurrentPage(1)
   }, [selectedProf])
+
   useEffect(() => {
     generateWords(allUsers.length, setWords)
   }, [allUsers.length])
+
   const handlePageChange = (pageIndex) => {
     setCurrentPage(pageIndex)
   }
+
   const handleSort = (item) => {
     setSortBy(item)
   }
+
   const handleProfessionSelect = (item) => {
     setSelectedProf(item)
   }
@@ -41,16 +46,18 @@ const Users = ({ users: allUsers, removeUserHandler, onToggleFavorite }) => {
       (user) => JSON.stringify(user.profession) === JSON.stringify(selectedProf)
     )
   }
-  const filteredUsers = selectedProf
-    ? filterObjectsAndArrays(allUsers)
-    : allUsers
+
+  const filteredUsers = selectedProf ? filterObjectsAndArrays(allUsers) : allUsers
 
   const count = filteredUsers.length
+
   const sortedUsers = _.orderBy(filteredUsers, [sortBy.iter], [sortBy.order])
+
   const users = paginate(sortedUsers, currentPage, pageSize)
   const clearFilter = () => {
     setSelectedProf(undefined)
   }
+
   return (
     <div className="d-flex">
       {professions && (
@@ -75,7 +82,7 @@ const Users = ({ users: allUsers, removeUserHandler, onToggleFavorite }) => {
           removeUserHandler={removeUserHandler}
           onToggleFavorite={onToggleFavorite}
           onSort={handleSort}
-          currentSort={sortBy}
+          selectedSort={sortBy}
         />
         <div className="d-flex justify-content-center">
           <Pagination
