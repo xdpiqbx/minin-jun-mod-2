@@ -30,14 +30,7 @@ const Users = ({ users: allUsers, removeUserHandler, onToggleFavorite }) => {
     setCurrentPage(pageIndex)
   }
   const handleSort = (item) => {
-    if (sortBy.iter === item) {
-      setSortBy((prevState) => ({
-        ...prevState,
-        order: prevState.order === 'asc' ? 'desc' : 'asc'
-      }))
-    } else {
-      setSortBy({ iter: item, order: 'asc' })
-    }
+    setSortBy(item)
   }
   const handleProfessionSelect = (item) => {
     setSelectedProf(item)
@@ -82,6 +75,7 @@ const Users = ({ users: allUsers, removeUserHandler, onToggleFavorite }) => {
           removeUserHandler={removeUserHandler}
           onToggleFavorite={onToggleFavorite}
           onSort={handleSort}
+          currentSort={sortBy}
         />
         <div className="d-flex justify-content-center">
           <Pagination

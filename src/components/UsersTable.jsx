@@ -2,14 +2,30 @@ import React from 'react'
 import PropType from 'prop-types'
 import User from './User'
 
-const UsersTable = ({ users, onSort, removeUserHandler, onToggleFavorite }) => {
+const UsersTable = ({
+  users,
+  onSort,
+  currentSort,
+  removeUserHandler,
+  onToggleFavorite
+}) => {
+  const handleSort = (item) => {
+    if (currentSort.iter === item) {
+      onSort({
+        ...currentSort,
+        order: currentSort.order === 'asc' ? 'desc' : 'asc'
+      })
+    } else {
+      onSort({ iter: item, order: 'asc' })
+    }
+  }
   return (
     <table className="table">
       <thead>
         <tr key={'user._id'}>
           <th
             onClick={() => {
-              onSort('name')
+              handleSort('name')
             }}
             scope="col"
           >
@@ -18,7 +34,7 @@ const UsersTable = ({ users, onSort, removeUserHandler, onToggleFavorite }) => {
           <th scope="col">Качества</th>
           <th
             onClick={() => {
-              onSort('profession.name')
+              handleSort('profession.name')
             }}
             scope="col"
           >
@@ -26,7 +42,7 @@ const UsersTable = ({ users, onSort, removeUserHandler, onToggleFavorite }) => {
           </th>
           <th
             onClick={() => {
-              onSort('completedMeetings')
+              handleSort('completedMeetings')
             }}
             scope="col"
           >
@@ -34,7 +50,7 @@ const UsersTable = ({ users, onSort, removeUserHandler, onToggleFavorite }) => {
           </th>
           <th
             onClick={() => {
-              onSort('rate')
+              handleSort('rate')
             }}
             scope="col"
           >
@@ -42,7 +58,7 @@ const UsersTable = ({ users, onSort, removeUserHandler, onToggleFavorite }) => {
           </th>
           <th
             onClick={() => {
-              onSort('bookmark')
+              handleSort('bookmark')
             }}
             scope="col"
           >
@@ -71,5 +87,6 @@ UsersTable.propTypes = {
   users: PropType.array.isRequired,
   removeUserHandler: PropType.func.isRequired,
   onToggleFavorite: PropType.func.isRequired,
-  onSort: PropType.func.isRequired
+  onSort: PropType.func.isRequired,
+  currentSort: PropType.object.isRequired
 }
