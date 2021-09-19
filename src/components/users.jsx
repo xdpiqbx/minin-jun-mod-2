@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import PropType from 'prop-types'
+import _ from 'lodash'
 import Phrase from './Phrase'
 import UsersTable from './UsersTable'
 import GroupList from './GroupList'
@@ -9,11 +10,12 @@ import { generateWords } from '../helpers/helpers'
 import API from '../API'
 
 const Users = ({ users: allUsers, removeUserHandler, onToggleFavorite }) => {
-  const pageSize = 4
+  const pageSize = 8
   const [currentPage, setCurrentPage] = useState(1)
   const [professions, setProfessions] = useState()
   const [selectedProf, setSelectedProf] = useState()
   const [words, setWords] = useState('человек тусанёт')
+  const [sortBy, setSortBy] = useState({ iter: 'name', order: 'asc' })
 
   useEffect(() => {
     API.professions.fetchAll().then((data) => setProfessions(data))
@@ -27,22 +29,32 @@ const Users = ({ users: allUsers, removeUserHandler, onToggleFavorite }) => {
   const handlePageChange = (pageIndex) => {
     setCurrentPage(pageIndex)
   }
-  const handleSort = (criteria) => {
-    console.log(criteria)
+  const handleSort = (item) => {
+    if (sortBy.iter === item) {
+      setSortBy((prevState) => ({
+        ...prevState,
+        order: prevState.order === 'asc' ? 'desc' : 'asc'
+      }))
+    } else {
+      setSortBy({ iter: item, order: 'asc' })
+    }
   }
   const handleProfessionSelect = (item) => {
     setSelectedProf(item)
   }
 
-  const customFilter = (allUsers) => {
+  const filterObjectsAndArrays = (allUsers) => {
     return allUsers.filter(
       (user) => JSON.stringify(user.profession) === JSON.stringify(selectedProf)
     )
   }
-  const filteredUsers = selectedProf ? customFilter(allUsers) : allUsers
+  const filteredUsers = selectedProf
+    ? filterObjectsAndArrays(allUsers)
+    : allUsers
 
   const count = filteredUsers.length
-  const users = paginate(filteredUsers, currentPage, pageSize)
+  const sortedUsers = _.orderBy(filteredUsers, [sortBy.iter], [sortBy.order])
+  const users = paginate(sortedUsers, currentPage, pageSize)
   const clearFilter = () => {
     setSelectedProf(undefined)
   }
