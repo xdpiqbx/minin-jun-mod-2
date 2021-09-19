@@ -1,36 +1,26 @@
 import React from 'react'
 import PropType from 'prop-types'
-import User from './User'
 import TableHeader from './TableHeader'
+import TableBody from './TableBody'
 
 const UsersTable = ({ users, onSort, selectedSort, removeUserHandler, onToggleFavorite }) => {
   const columns = {
-    name: { iter: 'name', name: 'Имя' },
+    name: { path: 'name', name: 'Имя' },
     qualities: { name: 'Качества' },
-    profession: { iter: 'profession.name', name: 'Профессия' },
-    completedMeetings: { iter: 'completedMeetings', name: 'Встретился, раз' },
-    rate: { iter: 'rate', name: 'Оценка' },
-    bookmark: { iter: 'bookmark', name: 'Избранное' },
+    profession: { path: 'profession.name', name: 'Профессия' },
+    completedMeetings: { path: 'completedMeetings', name: 'Встретился, раз' },
+    rate: { path: 'rate', name: 'Оценка' },
+    bookmark: { path: 'bookmark', name: 'Избранное' },
     delete: {}
   }
+
   return (
     <table className="table">
       <TableHeader onSort={onSort} selectedSort={selectedSort} columns={columns} />
-      <tbody>
-        {users.map((user) => (
-          <User
-            key={user._id}
-            user={user}
-            onRemoveUserHandler={removeUserHandler}
-            onToggleFavorite={onToggleFavorite}
-          />
-        ))}
-      </tbody>
+      <TableBody data={users} columns={columns} />
     </table>
   )
 }
-
-export default UsersTable
 
 UsersTable.propTypes = {
   users: PropType.array.isRequired,
@@ -39,3 +29,5 @@ UsersTable.propTypes = {
   onSort: PropType.func.isRequired,
   selectedSort: PropType.object.isRequired
 }
+
+export default UsersTable
