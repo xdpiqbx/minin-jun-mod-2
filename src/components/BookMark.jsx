@@ -1,18 +1,18 @@
 import React from 'react'
 import PropType from 'prop-types'
 
-const BookMark = ({ isFavorite, onToggleFavorite }) => {
+const BookMark = ({ status, onToggleFavorite }) => {
   const iconYes = 'bi bi-hand-thumbs-up-fill'
   const iconNo = 'bi bi-hand-thumbs-down'
   return (
     <button onClick={onToggleFavorite}>
-      <i className={isFavorite ? iconYes : iconNo} />
+      <i className={status ? iconYes : iconNo} />
     </button>
   )
 }
 
 BookMark.propTypes = {
-  isFavorite: PropType.bool,
+  status: PropType.bool,
   onToggleFavorite: PropType.func.isRequired
 }
 

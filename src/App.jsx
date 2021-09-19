@@ -19,7 +19,7 @@ const App = () => {
     setUsers(
       users.filter((user) => {
         if (user._id === userId) {
-          user.isFavorite = !user.isFavorite
+          user.bookmark = !user.bookmark
           return user
         }
         return user
@@ -32,11 +32,7 @@ const App = () => {
   return (
     <>
       {users && (
-        <Users
-          users={users}
-          removeUserHandler={removeUser}
-          onToggleFavorite={toggleFavorite}
-        />
+        <Users users={users} onRemoveUserHandler={removeUser} onToggleFavorite={toggleFavorite} />
       )}
     </>
   )

@@ -16,10 +16,7 @@ const User = ({ user, onRemoveUserHandler, onToggleFavorite }) => {
       <td>{user.completedMeetings}</td>
       <td>{user.rate}/5</td>
       <td>
-        <BookMark
-          isFavorite={user.isFavorite}
-          onToggleFavorite={() => onToggleFavorite(user._id)}
-        />
+        <BookMark bookmark={user.bookmark} onToggleFavorite={() => onToggleFavorite(user._id)} />
       </td>
       <td>
         <button

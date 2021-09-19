@@ -9,13 +9,13 @@ import { paginate } from '../utils/paginate'
 import { generateWords } from '../helpers/helpers'
 import API from '../API'
 
-const Users = ({ users: allUsers, removeUserHandler, onToggleFavorite }) => {
+const Users = ({ users: allUsers, onRemoveUserHandler, onToggleFavorite }) => {
   const pageSize = 8
   const [currentPage, setCurrentPage] = useState(1)
   const [professions, setProfessions] = useState()
   const [selectedProf, setSelectedProf] = useState()
   const [words, setWords] = useState('человек тусанёт')
-  const [sortBy, setSortBy] = useState({ iter: 'name', order: 'asc' })
+  const [sortBy, setSortBy] = useState({ path: 'name', order: 'asc' })
 
   useEffect(() => {
     API.professions.fetchAll().then((data) => setProfessions(data))
@@ -51,7 +51,7 @@ const Users = ({ users: allUsers, removeUserHandler, onToggleFavorite }) => {
 
   const count = filteredUsers.length
 
-  const sortedUsers = _.orderBy(filteredUsers, [sortBy.iter], [sortBy.order])
+  const sortedUsers = _.orderBy(filteredUsers, [sortBy.path], [sortBy.order])
 
   const users = paginate(sortedUsers, currentPage, pageSize)
   const clearFilter = () => {
@@ -79,7 +79,7 @@ const Users = ({ users: allUsers, removeUserHandler, onToggleFavorite }) => {
         <Phrase number={count} words={words} />
         <UsersTable
           users={users}
-          removeUserHandler={removeUserHandler}
+          onRemoveUserHandler={onRemoveUserHandler}
           onToggleFavorite={onToggleFavorite}
           onSort={handleSort}
           selectedSort={sortBy}
@@ -99,7 +99,7 @@ const Users = ({ users: allUsers, removeUserHandler, onToggleFavorite }) => {
 
 Users.propTypes = {
   users: PropType.array.isRequired,
-  removeUserHandler: PropType.func.isRequired,
+  onRemoveUserHandler: PropType.func.isRequired,
   onToggleFavorite: PropType.func.isRequired
 }
 
