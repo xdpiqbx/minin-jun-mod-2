@@ -1,6 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
 
-const element = <h1>Hello World! My name is [xdpiqbx]</h1>;
+import App from './app/App';
+import reportWebVitals from './reportWebVitals';
 
-ReactDOM.render(element, document.getElementById('root'));
+ReactDOM.render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </React.StrictMode>,
+  document.getElementById('root')
+);
+reportWebVitals();
