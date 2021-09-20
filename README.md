@@ -1,6 +1,6 @@
 # Модуль 2. Frontend
 
-## 7. Сортировка
+## 8. Маршрутизация
 
 ### Fast Company
 
@@ -9,7 +9,7 @@
 Для клонирования этой ветки
 
 ```code
-git clone https://github.com/xdpiqbx/minin-jun-mod-2.git -b 007-sort .
+git clone https://github.com/xdpiqbx/minin-jun-mod-2.git -b 008-routes .
 ```
 
 Тут использовались
@@ -33,5 +33,3 @@ eslint --init
 ```
 
 Import Bootstrap to `index.js` -> `import 'bootstrap/dist/css/bootstrap.css';`
-
-Start from 3. [КП] Реализация сортировки
