@@ -1,18 +1,10 @@
 import React from 'react'
 import PropType from 'prop-types'
-import TableHeader from './TableHeader'
-import TableBody from './TableBody'
+import Table from './Table'
 import BookMark from './BookMark'
 import QualitiesList from './QualitiesList'
 
-const UsersTable = ({
-  users,
-  onSort,
-  selectedSort,
-  // removeUserHandler,
-  onToggleFavorite,
-  onRemoveUserHandler
-}) => {
+const UsersTable = ({ users, onSort, selectedSort, onToggleBookmark, onDelete }) => {
   const columns = {
     name: { path: 'name', name: 'Имя' },
     qualities: {
@@ -26,36 +18,26 @@ const UsersTable = ({
       path: 'bookmark',
       name: 'Избранное',
       component: (user) => (
-        <BookMark status={user.bookmark} onToggleFavorite={() => onToggleFavorite(user._id)} />
+        <BookMark status={user.bookmark} toggleBookmarkAction={() => onToggleBookmark(user._id)} />
       )
     },
     delete: {
       component: (user) => (
-        <button
-          onClick={() => onRemoveUserHandler(user._id)}
-          type="button"
-          className="btn btn-danger"
-        >
+        <button onClick={() => onDelete(user._id)} type="button" className="btn btn-danger">
           delete
         </button>
       )
     }
   }
 
-  return (
-    <table className="table">
-      <TableHeader onSort={onSort} selectedSort={selectedSort} columns={columns} />
-      <TableBody data={users} columns={columns} />
-    </table>
-  )
+  return <Table data={users} onSort={onSort} selectedSort={selectedSort} columns={columns} />
 }
 
 UsersTable.propTypes = {
   users: PropType.array.isRequired,
-  // removeUserHandler: PropType.func.isRequired,
-  onToggleFavorite: PropType.func.isRequired,
+  onToggleBookmark: PropType.func,
   onSort: PropType.func.isRequired,
-  onRemoveUserHandler: PropType.func.isRequired,
+  onDelete: PropType.func,
   selectedSort: PropType.object.isRequired
 }
 

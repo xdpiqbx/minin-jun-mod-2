@@ -9,13 +9,22 @@ import { paginate } from '../utils/paginate'
 import { generateWords } from '../helpers/helpers'
 import API from '../API'
 
-const Users = ({ users: allUsers, onRemoveUserHandler, onToggleFavorite }) => {
+const Users = () => {
   const pageSize = 8
+  const [allUsers, setAllUsers] = useState()
+  const [allUsersLength, setAllUsersLength] = useState(0)
   const [currentPage, setCurrentPage] = useState(1)
   const [professions, setProfessions] = useState()
   const [selectedProf, setSelectedProf] = useState()
   const [words, setWords] = useState('человек тусанёт')
   const [sortBy, setSortBy] = useState({ path: 'name', order: 'asc' })
+
+  useEffect(() => {
+    API.users.fetchAll().then((data) => {
+      setAllUsersLength(data.length)
+      return setAllUsers(data)
+    })
+  }, [])
 
   useEffect(() => {
     API.professions.fetchAll().then((data) => setProfessions(data))
@@ -26,8 +35,8 @@ const Users = ({ users: allUsers, onRemoveUserHandler, onToggleFavorite }) => {
   }, [selectedProf])
 
   useEffect(() => {
-    generateWords(allUsers.length, setWords)
-  }, [allUsers.length])
+    generateWords(allUsersLength, setWords)
+  }, [allUsersLength])
 
   const handlePageChange = (pageIndex) => {
     setCurrentPage(pageIndex)
@@ -47,13 +56,30 @@ const Users = ({ users: allUsers, onRemoveUserHandler, onToggleFavorite }) => {
     )
   }
 
+  const handleDelete = (id) => {
+    setAllUsers(allUsers.filter((user) => user._id !== id))
+  }
+
+  const handleToggleBookmark = (userId) => {
+    setAllUsers(
+      allUsers.filter((user) => {
+        if (user._id === userId) {
+          user.bookmark = !user.bookmark
+          return user
+        }
+        return user
+      })
+    )
+  }
+
+  if (!allUsers) {
+    return 'loading'
+  }
+
   const filteredUsers = selectedProf ? filterObjectsAndArrays(allUsers) : allUsers
-
   const count = filteredUsers.length
-
   const sortedUsers = _.orderBy(filteredUsers, [sortBy.path], [sortBy.order])
-
-  const users = paginate(sortedUsers, currentPage, pageSize)
+  const usersCrop = paginate(sortedUsers, currentPage, pageSize)
   const clearFilter = () => {
     setSelectedProf(undefined)
   }
@@ -78,9 +104,9 @@ const Users = ({ users: allUsers, onRemoveUserHandler, onToggleFavorite }) => {
       <div className="d-flex flex-column">
         <Phrase number={count} words={words} />
         <UsersTable
-          users={users}
-          onRemoveUserHandler={onRemoveUserHandler}
-          onToggleFavorite={onToggleFavorite}
+          users={usersCrop}
+          onDelete={handleDelete}
+          onToggleBookmark={handleToggleBookmark}
           onSort={handleSort}
           selectedSort={sortBy}
         />
@@ -98,9 +124,9 @@ const Users = ({ users: allUsers, onRemoveUserHandler, onToggleFavorite }) => {
 }
 
 Users.propTypes = {
-  users: PropType.array.isRequired,
-  onRemoveUserHandler: PropType.func.isRequired,
-  onToggleFavorite: PropType.func.isRequired
+  users: PropType.array,
+  onRemoveUserHandler: PropType.func,
+  onToggleFavorite: PropType.func
 }
 
 export default Users
