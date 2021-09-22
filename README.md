@@ -168,6 +168,10 @@ const cropPosts = search ? _(posts).slice(0).take(search.count).value() : posts;
 
 ## History
 
+Пропс history по необходимости нужно пробрпсывать ниже
+
+Хук useHistory импортировать прямо в нужном компоненте
+
 history.push - это как кнопка НАЗАД
 
 ```js
@@ -184,6 +188,31 @@ const handleSave = () => {
 };
 ```
 
-Start from => 10. History. Программная навигация
+## Hooks
+
+Через хуки можно в дочерних компонентах сразу получить доступ к `History`, `Location` и `Match`
+
+### useHistory
+
+```js
+import { useHistory } from 'react-router-dom';
+const history = useHistory();
+// и дальше по той же схеме что выше
+```
+
+### useParams
+
+```js
+import { useParams } from 'react-router-dom';
+const params = useParams();
+const { postId } = params;
+// const postId = match.params.postId;
+```
+
+### useLocation
+
+### useRouteMatch
+
+Start from => 11. Хуки react-router-dom
 
 ## [React Router Dom - Quick Start](https://reactrouter.com/web/guides/quick-start)

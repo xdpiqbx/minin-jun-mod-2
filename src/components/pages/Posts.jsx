@@ -1,10 +1,15 @@
 import React from 'react';
 import PostList from '../PostList';
 import Post from '../Post';
+import { useParams } from 'react-router-dom';
 
-const Posts = ({ match, history }) => {
-  const postId = match.params.postId;
-  const display = match.params.display;
+const Posts = () => {
+  const params = useParams();
+  const { postId } = params;
+  const { display } = params;
+
+  // const postId = match.params.postId;
+  // const display = match.params.display;
 
   const posts = [
     { id: 1, label: 'post 1' },
@@ -17,7 +22,7 @@ const Posts = ({ match, history }) => {
       {postId ? (
         <>
           {display && <h2>{display}</h2>}
-          <Post id={postId} posts={posts} history={history} />
+          <Post id={postId} posts={posts} />
         </>
       ) : (
         <PostList posts={posts} />
