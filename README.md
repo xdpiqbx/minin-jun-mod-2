@@ -158,6 +158,14 @@ const search = queryString.parse(location.search);
 const cropPosts = search ? _(posts).slice(0).take(search.count).value() : posts;
 ```
 
-Start from => 8. Query параметры
+## Redirect
+
+```jsx
+<Route path="/dashboard" component={Dashboard} />
+<Redirect from="/admin" to="/dashboard" />
+<Redirect to="/404" />
+```
+
+Start from => 9. Переадресация (редирект)
 
 ## [React Router Dom - Quick Start](https://reactrouter.com/web/guides/quick-start)
