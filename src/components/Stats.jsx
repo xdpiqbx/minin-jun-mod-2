@@ -1,5 +1,5 @@
 const Stats = () => {
-  return <h1>Stats</h1>;
+  return <h3>Stats</h3>;
 };
 
 export default Stats;

@@ -2,6 +2,8 @@
 
 ## 8. Маршрутизация (Урок)
 
+## [React Router Dom - Quick Start](https://reactrouter.com/web/guides/quick-start)
+
 ---
 
 Для клонирования этой ветки
@@ -137,6 +139,8 @@ const Posts = ({ match }) => {
 export default Posts;
 ```
 
+---
+
 ## Query String
 
 ```js
@@ -158,6 +162,8 @@ const search = queryString.parse(location.search);
 const cropPosts = search ? _(posts).slice(0).take(search.count).value() : posts;
 ```
 
+---
+
 ## Redirect
 
 ```jsx
@@ -165,6 +171,8 @@ const cropPosts = search ? _(posts).slice(0).take(search.count).value() : posts;
 <Redirect from="/admin" to="/dashboard" />
 <Redirect to="/404" />
 ```
+
+---
 
 ## History
 
@@ -187,6 +195,8 @@ const handleSave = () => {
   history.replace('/posts');
 };
 ```
+
+---
 
 ## Hooks
 
@@ -213,6 +223,33 @@ const { postId } = params;
 
 ### useRouteMatch
 
-Start from => 11. Хуки react-router-dom
+---
 
-## [React Router Dom - Quick Start](https://reactrouter.com/web/guides/quick-start)
+## Вложенные пути
+
+```jsx
+import { Switch, Route, Link } from 'react-router-dom';
+import Stats from '../Stats';
+import Edit from '../Edit';
+
+const Dashboard = () => {
+  return (
+    <div>
+      <ul>
+        <li>
+          <Link to="/dashboard/edit">Edit</Link>
+        </li>
+        <li>
+          <Link to="/dashboard">Dashboard</Link>
+        </li>
+      </ul>
+      <Switch>
+        <Route path="/dashboard/edit" component={Edit} />
+        <Route exact path="/dashboard" component={Stats} />
+      </Switch>
+    </div>
+  );
+};
+
+export default Dashboard;
+```

@@ -5,7 +5,6 @@ import Login from '../components/pages/Login';
 import NotFound from '../components/pages/NotFound';
 import Dashboard from '../components/pages/Dashboard';
 import Posts from '../components/pages/Posts';
-import Stats from '../components/Stats';
 
 function App() {
   return (
@@ -14,7 +13,6 @@ function App() {
       <h1>App</h1>
       <Switch>
         <Route path="/" exact component={Home} />
-        <Route path="/dashboard/stats" component={Stats} />
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/login" component={Login} />
         <Route path="/posts/:postId?/:display?" component={Posts} />
