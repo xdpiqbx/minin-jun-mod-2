@@ -15,6 +15,8 @@ git clone https://github.com/xdpiqbx/minin-jun-mod-2.git -b 008-router-LESSON .
 ```code
 npx create-react-app .
 npm i react-router-dom
+npm i query-string
+npm i lodash
 ```
 
 ```jsx
@@ -83,12 +85,14 @@ function App() {
 ```
 
 ```js
+props : {
   match: {
     path: '/posts/:postId',
     url: '/posts/123',
     isExact: true,
     params: { postId: '123' }
   }
+}
 ```
 
 ```jsx
@@ -131,6 +135,27 @@ const Posts = ({ match }) => {
 };
 
 export default Posts;
+```
+
+## Query String
+
+```js
+props : {
+  location: {
+    pathname: '/posts',
+    search: '?sortBy=newest&count=1',
+    hash: ''
+  }
+}
+```
+
+[Query String](https://github.com/sindresorhus/query-string)
+
+```js
+import _ from 'lodash';
+import queryString from 'query-string';
+const search = queryString.parse(location.search);
+const cropPosts = search ? _(posts).slice(0).take(search.count).value() : posts;
 ```
 
 Start from => 8. Query параметры
