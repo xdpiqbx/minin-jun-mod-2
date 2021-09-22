@@ -166,6 +166,24 @@ const cropPosts = search ? _(posts).slice(0).take(search.count).value() : posts;
 <Redirect to="/404" />
 ```
 
-Start from => 9. Переадресация (редирект)
+## History
+
+history.push - это как кнопка НАЗАД
+
+```js
+const handleSave = () => {
+  history.push('/posts');
+};
+```
+
+history.replace - перекинет на нужную страницу и не сможет вернуть НАЗАД
+
+```js
+const handleSave = () => {
+  history.replace('/posts');
+};
+```
+
+Start from => 10. History. Программная навигация
 
 ## [React Router Dom - Quick Start](https://reactrouter.com/web/guides/quick-start)
