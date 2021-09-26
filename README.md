@@ -16,6 +16,7 @@ git clone https://github.com/xdpiqbx/minin-jun-mod-2.git -b 008-routes .
 
 ```code
 npx create-react-app
+npm i react-router-dom
 npm i bootstrap@5.1.0 -E
 npm i lodash@4.17.15
 npm i prop-types@15.7.2
@@ -33,3 +34,23 @@ eslint --init
 ```
 
 Import Bootstrap to `index.js` -> `import 'bootstrap/dist/css/bootstrap.css';`
+
+---
+
+## ДЗ шаг за шагом
+
+```code
+npm i react-router-dom
+```
+
+```jsx
+// ---->>> index.js
+//...
+import { BrowserRouter } from 'react-router-dom'
+ReactDOM.render(
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  document.getElementById('root')
+)
+```
