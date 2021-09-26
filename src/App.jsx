@@ -1,8 +1,20 @@
 import React from 'react'
-import Users from './components/Users'
+import { Route, Switch, Redirect } from 'react-router-dom'
+import Main from './layouts/Main'
+import Login from './layouts/Login'
+import Users from './layouts/Users'
 
 const App = () => {
-  return <Users />
+  return (
+    <div>
+      <Switch>
+        <Route path="/" exact component={Main} />
+        <Route path="/login" component={Login} />
+        <Route path="/users" component={Users} />
+        <Redirect to="/" />
+      </Switch>
+    </div>
+  )
 }
 
 export default App
