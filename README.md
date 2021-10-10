@@ -1,6 +1,6 @@
 # Модуль 2. Frontend
 
-## 8. Маршрутизация
+## 9. Формы. Часть 1
 
 ### Fast Company
 
@@ -9,7 +9,7 @@
 Для клонирования этой ветки
 
 ```code
-git clone https://github.com/xdpiqbx/minin-jun-mod-2.git -b 008-routes .
+git clone https://github.com/xdpiqbx/minin-jun-mod-2.git -b 009-forms-001 .
 ```
 
 Тут использовались
@@ -46,11 +46,4 @@ npm i react-router-dom
 ```jsx
 // ---->>> index.js
 //...
-import { BrowserRouter } from 'react-router-dom'
-ReactDOM.render(
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  document.getElementById('root')
-)
 ```
