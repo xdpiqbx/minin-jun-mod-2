@@ -68,3 +68,32 @@ const Login = () => {
 export default Login
 //...
 ```
+
+```jsx
+// ---->>> 3. Обработка значений множества полей
+import React, { useState } from 'react'
+
+const Login = () => {
+  const [data, setData] = useState({ email: '', password: '' })
+
+  const handleChange = ({ target }) => {
+    setData((prevState) => ({ ...prevState, [target.name]: target.value }))
+  }
+
+  return (
+    <form action="">
+      <div>
+        <label htmlFor="email">Email</label>
+        <input type="text" id="email" value={data.email} onChange={handleChange} name="email" />
+      </div>
+      <div>
+        <label htmlFor="pwd">Password</label>
+        <input type="password" id="pwd" value={data.password} onChange={handleChange} name="pwd" />
+      </div>
+    </form>
+  )
+}
+
+export default Login
+//...
+```
