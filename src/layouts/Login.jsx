@@ -8,8 +8,14 @@ const Login = () => {
     setData((prevState) => ({ ...prevState, [target.name]: target.value }))
   }
 
+  const onSubmit = (e) => {
+    e.preventDefault()
+    console.log(e)
+    console.log(data)
+  }
+
   return (
-    <form action="">
+    <form onSubmit={onSubmit}>
       <TextField label="Email" name="email" value={data.email} onChange={handleChange} />
       <TextField
         label="Password"
@@ -18,6 +24,7 @@ const Login = () => {
         value={data.password}
         onChange={handleChange}
       />
+      <button type="submit">Submit</button>
     </form>
   )
 }
