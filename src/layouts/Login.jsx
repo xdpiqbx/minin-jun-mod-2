@@ -11,11 +11,12 @@ const Login = () => {
   }
 
   const validatorConfig = {
-    email: { isRequired: { message: 'Электронная почта обязательна для заполения' } },
+    email: {
+      isRequired: { message: 'Электронная почта обязательна для заполения' },
+      isEmail: { message: 'Email введён некорректно' }
+    },
     password: { isRequired: { message: 'Щас без пароля никак =(' } }
   }
-
-  // validator(data, config){}
 
   useEffect(() => {
     validate()
@@ -23,11 +24,6 @@ const Login = () => {
 
   const validate = () => {
     const errors = validator(data, validatorConfig)
-    // for (const fieldNmae in data) {
-    //   if (data[fieldNmae].trim() === '') {
-    //     errors[fieldNmae] = `${fieldNmae} обязательно для заполнения`
-    //   }
-    // }
     setErrors(errors)
     return Object.keys(errors).length === 0
   }

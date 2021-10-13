@@ -7,6 +7,14 @@ export function validator(data, config) {
           return config.message
         }
         break
+      case 'isEmail': {
+        const emailRegExp = /^\S+@\S+\.\S+$/g
+        if (!emailRegExp.test(data)) {
+          console.log({ data, reg: emailRegExp.test(data) })
+          return config.message
+        }
+        break
+      }
       default:
         console.log('default')
         break
@@ -15,7 +23,7 @@ export function validator(data, config) {
   for (const fieldNmae in data) {
     for (const validateMethod in config[fieldNmae]) {
       const error = validate(validateMethod, data[fieldNmae], config[fieldNmae][validateMethod])
-      if (error) {
+      if (error && !errors[fieldNmae]) {
         errors[fieldNmae] = error
       }
     }

@@ -13,8 +13,8 @@ module.exports = {
   },
   plugins: ['react'],
   rules: {
-    indent: ['error', 2, { SwitchCase: 1 }],
     semi: ['error', 'never'],
+    indent: ['error', 2, { SwitchCase: 1 }],
     'space-before-function-paren': ['error', { anonymous: 'always', named: 'never' }],
     quotes: ['error', 'single', { allowTemplateLiterals: true }],
     'multiline-ternary': ['off', 'always-multiline'],
