@@ -15,7 +15,12 @@ const Login = () => {
       isRequired: { message: 'Электронная почта обязательна для заполения' },
       isEmail: { message: 'Email введён некорректно' }
     },
-    password: { isRequired: { message: 'Щас без пароля никак =(' } }
+    password: {
+      isRequired: { message: 'Щас без пароля никак =(' },
+      isCapitalSymbol: { message: 'Пароль до должен содержать заглавную букву' },
+      isContainDigit: { message: 'Пароль до должен содержать число' },
+      min: { message: 'Минимальная длинна 8 симолов', value: 8 }
+    }
   }
 
   useEffect(() => {
@@ -27,6 +32,8 @@ const Login = () => {
     setErrors(errors)
     return Object.keys(errors).length === 0
   }
+
+  const isValid = Object.keys(errors).length === 0
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -54,7 +61,9 @@ const Login = () => {
         onChange={handleChange}
         error={errors.password}
       />
-      <button type="submit">Submit</button>
+      <button type="submit" disabled={!isValid}>
+        Submit
+      </button>
     </form>
   )
 }
