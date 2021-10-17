@@ -1,6 +1,6 @@
 # Модуль 2. Frontend
 
-## 9. Формы. Часть 1
+## 9. Формы. Часть 2
 
 ### Fast Company
 
@@ -9,7 +9,7 @@
 Для клонирования этой ветки
 
 ```code
-git clone https://github.com/xdpiqbx/minin-jun-mod-2.git -b 009-forms-001 .
+git clone https://github.com/xdpiqbx/minin-jun-mod-2.git -b 009-forms-002 .
 ```
 
 Тут использовались
