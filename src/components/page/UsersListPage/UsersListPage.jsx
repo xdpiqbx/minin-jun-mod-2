@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import PropType from 'prop-types'
 import _ from 'lodash'
-import Phrase from './Phrase'
-import UsersTable from './UsersTable'
-import GroupList from './GroupList'
-import Pagination from './Pagination'
-import { paginate } from '../utils/paginate'
-import { generateWords } from '../helpers/helpers'
-import API from '../API'
+import Phrase from '../../Phrase'
+import UsersTable from '../../ui/UsersTable'
+import GroupList from '../../common/GroupList'
+import Pagination from '../../common/Pagination'
+import { paginate } from '../../../utils/paginate'
+import { generateWords } from '../../../helpers/helpers'
+import API from '../../../API'
 
-const UsersList = () => {
+const UsersListPage = () => {
   const pageSize = 8
   const [allUsers, setAllUsers] = useState()
   const [allUsersLength, setAllUsersLength] = useState(0)
@@ -138,10 +138,10 @@ const UsersList = () => {
   }
 }
 
-UsersList.propTypes = {
+UsersListPage.propTypes = {
   users: PropType.array,
   onRemoveUserHandler: PropType.func,
   onToggleFavorite: PropType.func
 }
 
-export default UsersList
+export default UsersListPage
