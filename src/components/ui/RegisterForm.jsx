@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import TextField from '../common/form/TextField'
 import { validator } from '../../utils/validator'
 import API from '../../API'
+import SelectField from '../common/form/SelectField'
 
 const RegisterForm = () => {
   const [data, setData] = useState({ email: '', password: '', profession: '' })
@@ -30,6 +31,9 @@ const RegisterForm = () => {
       isCapitalSymbol: { message: 'Пароль до должен содержать заглавную букву' },
       isContainDigit: { message: 'Пароль до должен содержать число' },
       min: { message: 'Минимальная длинна 8 симолов', value: 8 }
+    },
+    profession: {
+      isRequired: { message: 'Обязательно выберите вашу профессию' }
     }
   }
 
@@ -71,33 +75,14 @@ const RegisterForm = () => {
         onChange={handleChange}
         error={errors.password}
       />
-      <div className="mb-4">
-        <label htmlFor="validationCustom04" className="form-label">
-          State
-        </label>
-        <select
-          className="form-select"
-          id="validationCustom04"
-          name="profession"
-          value={data.profession}
-          onChange={handleChange}
-        >
-          <option selected={data.profession === ''} disabled value="">
-            Choose...
-          </option>
-          {professions &&
-            Object.keys(professions).map((key) => (
-              <option
-                selected={professions[key]._id === data.profession}
-                key={professions[key]._id}
-                value={professions[key]._id}
-              >
-                {professions[key].name}
-              </option>
-            ))}
-        </select>
-        <div className="invalid-feedback">Please select a valid state.</div>
-      </div>
+      <SelectField
+        label="Выберите вашу професию"
+        value={data.profession}
+        onChange={handleChange}
+        defaultOption="Choose..."
+        options={professions}
+        error={errors.profession}
+      />
       <button type="submit" disabled={!isValid} className="btn btn-primary w-100 mx-auto">
         Submit
       </button>
