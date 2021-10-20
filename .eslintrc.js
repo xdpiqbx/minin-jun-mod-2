@@ -14,14 +14,17 @@ module.exports = {
   plugins: ['react'],
   rules: {
     semi: ['error', 'never'],
-    indent: [
-      'error',
-      2,
-      {
-        SwitchCase: 1,
-        ignoredNodes: ['ConditionalExpression']
-      }
-    ],
+    indent: 'off',
+    'react/jsx-indent': 'off',
+    'react/jsx-indent-props': 'off',
+    // indent: [
+    //   'error',
+    //   2,
+    //   {
+    //     SwitchCase: 1,
+    //     ignoredNodes: ['ConditionalExpression']
+    //   }
+    // ],
     'space-before-function-paren': ['error', { anonymous: 'always', named: 'never' }],
     quotes: ['error', 'single', { allowTemplateLiterals: true }],
     'multiline-ternary': ['off', 'always-multiline'],

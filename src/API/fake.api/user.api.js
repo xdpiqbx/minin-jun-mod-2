@@ -1,4 +1,4 @@
-import { professionsObj } from './professions.api'
+import { professionsObject as professions } from './professions.api'
 const qualities = {
   tedious: {
     _id: '67rdca3eeb7f6fgeed471198',
@@ -10,7 +10,11 @@ const qualities = {
     name: 'Странный',
     color: 'secondary'
   },
-  buller: { _id: '67rdca3eeb7f6fgeed4711012', name: 'Троль', color: 'success' },
+  buller: {
+    _id: '67rdca3eeb7f6fgeed4711012',
+    name: 'Троль',
+    color: 'success'
+  },
   alcoholic: {
     _id: '67rdca3eeb7f6fgeed471101',
     name: 'Алкоголик',
@@ -22,7 +26,7 @@ const qualities = {
     color: 'info'
   },
   uncertain: {
-    _id: '67rdca3eeb7f6fgeed471102',
+    _id: '67rdca3eeb7f6fgeed471103',
     name: 'Неуверенный',
     color: 'dark'
   }
@@ -32,7 +36,7 @@ const users = [
   {
     _id: '67rdca3eeb7f6fgeed471815',
     name: 'Джон Дориан',
-    profession: professionsObj.doctor,
+    profession: professions.doctor,
     qualities: [qualities.tedious, qualities.uncertain, qualities.strange],
     completedMeetings: 36,
     rate: 2.5,
@@ -41,7 +45,7 @@ const users = [
   {
     _id: '67rdca3eeb7f6fgeed471816',
     name: 'Кокс',
-    profession: professionsObj.doctor,
+    profession: professions.doctor,
     qualities: [qualities.buller, qualities.handsome, qualities.alcoholic],
     completedMeetings: 15,
     rate: 2.5,
@@ -50,7 +54,7 @@ const users = [
   {
     _id: '67rdca3eeb7f6fgeed471817',
     name: 'Боб Келсо',
-    profession: professionsObj.doctor,
+    profession: professions.doctor,
     qualities: [qualities.buller],
     completedMeetings: 247,
     rate: 3.5,
@@ -59,7 +63,7 @@ const users = [
   {
     _id: '67rdca3eeb7f6fgeed471818',
     name: 'Рэйчел Грин',
-    profession: professionsObj.waiter,
+    profession: professions.waiter,
     qualities: [qualities.uncertain],
     completedMeetings: 148,
     rate: 3.5,
@@ -68,7 +72,7 @@ const users = [
   {
     _id: '67rdca3eeb7f6fgeed471819',
     name: 'Шелдон Купер',
-    profession: professionsObj.physics,
+    profession: professions.physics,
     qualities: [qualities.strange, qualities.tedious],
     completedMeetings: 37,
     rate: 4.6,
@@ -77,7 +81,7 @@ const users = [
   {
     _id: '67rdca3eeb7f6fgeed471820',
     name: 'Леонард Хофстедтер',
-    profession: professionsObj.physics,
+    profession: professions.physics,
     qualities: [qualities.strange, qualities.uncertain],
     completedMeetings: 147,
     rate: 3.5,
@@ -86,7 +90,7 @@ const users = [
   {
     _id: '67rdca3eeb7f6fgeed471821',
     name: 'Говард Воловиц',
-    profession: professionsObj.engineer,
+    profession: professions.engineer,
     qualities: [qualities.strange, qualities.tedious],
     completedMeetings: 72,
     rate: 3.5,
@@ -95,7 +99,7 @@ const users = [
   {
     _id: '67rdca3eeb7f6fgeed471822',
     name: 'Никола Тесла',
-    profession: professionsObj.engineer,
+    profession: professions.engineer,
     qualities: [qualities.handsome],
     completedMeetings: 72,
     rate: 5,
@@ -104,7 +108,7 @@ const users = [
   {
     _id: '67rdca3eeb7f6fgeed471823',
     name: 'Моника Геллер',
-    profession: professionsObj.cook,
+    profession: professions.cook,
     qualities: [qualities.strange, qualities.uncertain],
     completedMeetings: 17,
     rate: 4.5,
@@ -113,7 +117,7 @@ const users = [
   {
     _id: '67rdca3eeb7f6fgeed471824',
     name: 'Рататуй',
-    profession: professionsObj.cook,
+    profession: professions.cook,
     qualities: [qualities.handsome, qualities.buller],
     completedMeetings: 17,
     rate: 4.5,
@@ -122,7 +126,7 @@ const users = [
   {
     _id: '67rdca3eeb7f6fgeed47181f',
     name: 'Джоуи Триббиани',
-    profession: professionsObj.actor,
+    profession: professions.actor,
     qualities: [qualities.uncertain, qualities.strange],
     completedMeetings: 434,
     rate: 3.5,
@@ -131,7 +135,7 @@ const users = [
   {
     _id: '67rdca3eeb7f6fgeed47181r',
     name: 'Брэд Питт',
-    profession: professionsObj.actor,
+    profession: professions.actor,
     qualities: [qualities.handsome],
     completedMeetings: 434,
     rate: 5,
@@ -139,21 +143,179 @@ const users = [
   }
 ]
 
-const fetchAll = () => {
-  return new Promise((resolve) => {
-    setTimeout(function () {
+const fetchAll = () =>
+  new Promise((resolve) => {
+    window.setTimeout(function () {
       resolve(users)
+    }, 2000)
+  })
+
+const getById = (id) =>
+  new Promise((resolve) => {
+    window.setTimeout(function () {
+      resolve(users.find((user) => user._id === id))
     }, 1000)
   })
+export default {
+  fetchAll,
+  getById
 }
+// import { professionsObj } from './professions.api'
+// const qualities = {
+//   tedious: {
+//     _id: '67rdca3eeb7f6fgeed471198',
+//     name: 'Нудила',
+//     color: 'primary'
+//   },
+//   strange: {
+//     _id: '67rdca3eeb7f6fgeed471100',
+//     name: 'Странный',
+//     color: 'secondary'
+//   },
+//   buller: { _id: '67rdca3eeb7f6fgeed4711012', name: 'Троль', color: 'success' },
+//   alcoholic: {
+//     _id: '67rdca3eeb7f6fgeed471101',
+//     name: 'Алкоголик',
+//     color: 'danger'
+//   },
+//   handsome: {
+//     _id: '67rdca3eeb7f6fgeed471102',
+//     name: 'Красавчик',
+//     color: 'info'
+//   },
+//   uncertain: {
+//     _id: '67rdca3eeb7f6fgeed471102',
+//     name: 'Неуверенный',
+//     color: 'dark'
+//   }
+// }
 
-const getUserById = (userId) => {
-  return new Promise((resolve) => {
-    setTimeout(function () {
-      const user = users.find(({ _id }) => _id === userId)
-      resolve(user)
-    }, 1000)
-  })
-}
+// const users = [
+//   {
+//     _id: '67rdca3eeb7f6fgeed471815',
+//     name: 'Джон Дориан',
+//     profession: professionsObj.doctor,
+//     qualities: [qualities.tedious, qualities.uncertain, qualities.strange],
+//     completedMeetings: 36,
+//     rate: 2.5,
+//     bookmark: false
+//   },
+//   {
+//     _id: '67rdca3eeb7f6fgeed471816',
+//     name: 'Кокс',
+//     profession: professionsObj.doctor,
+//     qualities: [qualities.buller, qualities.handsome, qualities.alcoholic],
+//     completedMeetings: 15,
+//     rate: 2.5,
+//     bookmark: false
+//   },
+//   {
+//     _id: '67rdca3eeb7f6fgeed471817',
+//     name: 'Боб Келсо',
+//     profession: professionsObj.doctor,
+//     qualities: [qualities.buller],
+//     completedMeetings: 247,
+//     rate: 3.5,
+//     bookmark: false
+//   },
+//   {
+//     _id: '67rdca3eeb7f6fgeed471818',
+//     name: 'Рэйчел Грин',
+//     profession: professionsObj.waiter,
+//     qualities: [qualities.uncertain],
+//     completedMeetings: 148,
+//     rate: 3.5,
+//     bookmark: false
+//   },
+//   {
+//     _id: '67rdca3eeb7f6fgeed471819',
+//     name: 'Шелдон Купер',
+//     profession: professionsObj.physics,
+//     qualities: [qualities.strange, qualities.tedious],
+//     completedMeetings: 37,
+//     rate: 4.6,
+//     bookmark: false
+//   },
+//   {
+//     _id: '67rdca3eeb7f6fgeed471820',
+//     name: 'Леонард Хофстедтер',
+//     profession: professionsObj.physics,
+//     qualities: [qualities.strange, qualities.uncertain],
+//     completedMeetings: 147,
+//     rate: 3.5,
+//     bookmark: false
+//   },
+//   {
+//     _id: '67rdca3eeb7f6fgeed471821',
+//     name: 'Говард Воловиц',
+//     profession: professionsObj.engineer,
+//     qualities: [qualities.strange, qualities.tedious],
+//     completedMeetings: 72,
+//     rate: 3.5,
+//     bookmark: false
+//   },
+//   {
+//     _id: '67rdca3eeb7f6fgeed471822',
+//     name: 'Никола Тесла',
+//     profession: professionsObj.engineer,
+//     qualities: [qualities.handsome],
+//     completedMeetings: 72,
+//     rate: 5,
+//     bookmark: false
+//   },
+//   {
+//     _id: '67rdca3eeb7f6fgeed471823',
+//     name: 'Моника Геллер',
+//     profession: professionsObj.cook,
+//     qualities: [qualities.strange, qualities.uncertain],
+//     completedMeetings: 17,
+//     rate: 4.5,
+//     bookmark: false
+//   },
+//   {
+//     _id: '67rdca3eeb7f6fgeed471824',
+//     name: 'Рататуй',
+//     profession: professionsObj.cook,
+//     qualities: [qualities.handsome, qualities.buller],
+//     completedMeetings: 17,
+//     rate: 4.5,
+//     bookmark: false
+//   },
+//   {
+//     _id: '67rdca3eeb7f6fgeed47181f',
+//     name: 'Джоуи Триббиани',
+//     profession: professionsObj.actor,
+//     qualities: [qualities.uncertain, qualities.strange],
+//     completedMeetings: 434,
+//     rate: 3.5,
+//     bookmark: false
+//   },
+//   {
+//     _id: '67rdca3eeb7f6fgeed47181r',
+//     name: 'Брэд Питт',
+//     profession: professionsObj.actor,
+//     qualities: [qualities.handsome],
+//     completedMeetings: 434,
+//     rate: 5,
+//     bookmark: false
+//   }
+// ]
 
-export default { fetchAll, getUserById }
+// const fetchAll = () => {
+//   return new Promise((resolve) => {
+//     setTimeout(function () {
+//       resolve(users)
+//     }, 1000)
+//   })
+// }
+
+// const getUserById = (userId) => {
+//   return new Promise((resolve) => {
+//     setTimeout(function () {
+//       const user = users.find(({ _id }) => _id === userId)
+//       resolve(user)
+//     }, 1000)
+//   })
+// }
+
+// export default { fetchAll, getUserById }

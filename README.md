@@ -21,6 +21,7 @@ npm i bootstrap@5.1.0 -E
 npm i lodash@4.17.15
 npm i prop-types@15.7.2
 npm i -g eslint
+npm i react-select
 ```
 
 ## [Lodash](https://lodash.com/)
