@@ -18,11 +18,8 @@ const RegisterForm = () => {
   const [qualities, setQualities] = useState()
   const [errors, setErrors] = useState({})
 
-  const handleChange = ({ target }) => {
-    console.log(target)
-    if (target) {
-      setData((prevState) => ({ ...prevState, [target.name]: target.value }))
-    }
+  const handleChange = (target) => {
+    setData((prevState) => ({ ...prevState, [target.name]: target.value }))
   }
 
   useEffect(() => {
@@ -101,8 +98,14 @@ const RegisterForm = () => {
         value={data.sex}
         name="sex"
         onChange={handleChange}
+        label="Выберите ваш пол"
       />
-      <MultiSelectField options={qualities} onChange={handleChange} />
+      <MultiSelectField
+        options={qualities}
+        onChange={handleChange}
+        name="qualities"
+        label="Выберите ваши качества"
+      />
       <button type="submit" disabled={!isValid} className="btn btn-primary w-100 mx-auto">
         Submit
       </button>
