@@ -42,6 +42,9 @@ const RegisterForm = () => {
     },
     profession: {
       isRequired: { message: 'Обязательно выберите вашу профессию' }
+    },
+    license: {
+      isRequired: { message: 'Подтвердите лицензионное соглашение' }
     }
   }
 
@@ -108,7 +111,12 @@ const RegisterForm = () => {
         name="qualities"
         label="Выберите ваши качества"
       />
-      <CheckBoxField value={data.license} onChange={handleChange} name="license">
+      <CheckBoxField
+        value={data.license}
+        onChange={handleChange}
+        name="license"
+        error={errors.license}
+      >
         Подтвердить <a>лицензионное соглашение</a>
       </CheckBoxField>
       <button type="submit" disabled={!isValid} className="btn btn-primary w-100 mx-auto">
