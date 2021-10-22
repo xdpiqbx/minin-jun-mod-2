@@ -30,6 +30,10 @@ npm i react-select
 
 ## [Eslint](https://eslint.org/)
 
+## [React select](https://react-select.com/home#getting-started)
+
+## [Yup](https://www.npmjs.com/package/yup)
+
 ```code
 eslint --init
 ```
