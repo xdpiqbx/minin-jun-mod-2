@@ -1,30 +1,32 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-const CheckBoxField = ({ name, value, onChange }) => {
-  const handleChange = ({ target }) => {
-    onChange({ name: target.name, value: target.value })
+const CheckBoxField = ({ name, value, onChange, children }) => {
+  const handleChange = () => {
+    onChange({ name: name, value: !value })
   }
   return (
-    <div className="form-check">
+    <div className="form-check mb-4">
       <input
         className="form-check-input"
         type="checkbox"
         value=""
         id={name}
         onChange={handleChange}
+        checked={value}
       />
       <label className="form-check-label" htmlFor={name}>
-        Default checkbox
+        {children}
       </label>
     </div>
   )
 }
-// 1:40 checkbox
+// 7:00 checkbox
 
 CheckBoxField.propTypes = {
   onChange: PropTypes.func,
   name: PropTypes.string,
-  value: PropTypes.bool
+  value: PropTypes.bool,
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node])
 }
 
 export default CheckBoxField
