@@ -8,10 +8,10 @@ const UserPage = ({ userId }) => {
   const history = useHistory()
   const [user, setUser] = useState(null)
   useEffect(() => {
-    API.users.getUserById(userId).then((data) => setUser(data))
+    API.users.getById(userId).then((data) => setUser(data))
   }, [])
   const handleClickAllUsers = () => {
-    history.push('/users')
+    history.push(history.location.pathname + '/edit')
   }
   if (user) {
     return (
@@ -21,7 +21,7 @@ const UserPage = ({ userId }) => {
         <QualitiesList qualities={user.qualities} />
         <p>Встреч: {user.completedMeetings}</p>
         <h2>Оценка: {user.rate}</h2>
-        <button onClick={handleClickAllUsers}>Все пользователи</button>
+        <button onClick={handleClickAllUsers}>Edit</button>
       </div>
     )
   } else {
