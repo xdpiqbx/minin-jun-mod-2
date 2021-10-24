@@ -1,17 +1,22 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const SelectField = ({ label, value, onChange, defaultOption, options, error }) => {
+const SelectField = ({ label, value, onChange, defaultOption, options, error, name }) => {
   const handleChange = ({ target }) => {
     onChange({ name: target.name, value: target.value })
   }
   const getInputClasses = () => {
-    return `form-select ` + (error ? 'is-invalid' : 'is-valid')
+    return 'form-select' + (error ? ' is-invalid' : '')
   }
+
   const optionsArray =
     !Array.isArray(options) && typeof options === 'object'
-      ? Object.keys(options).map((name) => ({ name: options[name].name, value: options[name]._id }))
+      ? Object.keys(options).map((optionName) => ({
+          name: options[optionName].name,
+          value: options[optionName]._id
+        }))
       : options
+
   return (
     <div className="mb-4">
       <label htmlFor="validationCustom04" className="form-label">
@@ -20,7 +25,7 @@ const SelectField = ({ label, value, onChange, defaultOption, options, error }) 
       <select
         className={getInputClasses()}
         id="validationCustom04"
-        name="profession"
+        name={name}
         value={value}
         onChange={handleChange}
       >
@@ -28,9 +33,9 @@ const SelectField = ({ label, value, onChange, defaultOption, options, error }) 
           {defaultOption}
         </option>
         {optionsArray &&
-          optionsArray.map((key) => (
-            <option key={key.value} value={key.value}>
-              {key.name}
+          optionsArray.map((option) => (
+            <option value={option.value} key={option.value}>
+              {option.name}
             </option>
           ))}
       </select>
@@ -38,14 +43,14 @@ const SelectField = ({ label, value, onChange, defaultOption, options, error }) 
     </div>
   )
 }
-
 SelectField.propTypes = {
+  defaultOption: PropTypes.string,
   label: PropTypes.string,
   value: PropTypes.string,
   onChange: PropTypes.func,
-  defaultOption: PropTypes.string,
   error: PropTypes.string,
-  options: PropTypes.oneOfType([PropTypes.object, PropTypes.array])
+  options: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  name: PropTypes.string
 }
 
 export default SelectField

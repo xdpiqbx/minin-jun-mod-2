@@ -34,7 +34,6 @@ const TableHeader = ({ onSort, selectedSort, columns }) => {
     <thead>
       <tr key={'user._id'}>
         {Object.keys(columns).map((col) => {
-          console.log()
           return (
             <th
               key={col}
