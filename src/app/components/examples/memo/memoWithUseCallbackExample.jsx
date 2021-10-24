@@ -1,5 +1,5 @@
 const MemoWithUseCallbackExample = (props) => {
-    return null;
-};
+  return null
+}
 
-export default MemoWithUseCallbackExample;
+export default MemoWithUseCallbackExample
