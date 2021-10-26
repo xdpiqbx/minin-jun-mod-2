@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import CardWrapper from '../../common/Card'
 import SmallTitle from '../../common/typografy/smallTitle'
 
@@ -15,10 +15,13 @@ const ComplexCalculateExample = () => {
   const [value, setValue] = useState(100)
   const [otherValue, setOtherValue] = useState(false)
   const btnColor = otherValue ? 'primary' : 'secondary'
+
   useEffect(() => {
     console.log('render')
   })
-  const fact = runFactorial(value)
+
+  const fact = useMemo(() => runFactorial(value), [value])
+
   return (
     <>
       <CardWrapper>

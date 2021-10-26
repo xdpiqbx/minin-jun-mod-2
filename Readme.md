@@ -106,3 +106,16 @@ export default ProgrammablActionsExample
 ---
 
 ## useMemo - перед вызовом функции проверяется, вызывалась ли функция ранее
+
+- принимает данные и зависимость
+- чтоб сохранить данные или результат
+- для хранения результатов выполнения сложных функций, (чтоб не вызывать их при каждом рендере)
+- использовать только в случае необходимости
+
+```jsx
+function runFactorial(n) {
+  console.log('runFactorial')
+  return n ? n * factorial(n - 1) : 1
+}
+const fact = useMemo(() => runFactorial(value), [value])
+```
