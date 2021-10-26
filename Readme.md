@@ -105,4 +105,4 @@ export default ProgrammablActionsExample
 
 ---
 
-## useMemo
+## useMemo - перед вызовом функции проверяется, вызывалась ли функция ранее
