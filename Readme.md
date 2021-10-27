@@ -119,3 +119,24 @@ function runFactorial(n) {
 }
 const fact = useMemo(() => runFactorial(value), [value])
 ```
+
+---
+
+## useCallback - перед вызовом функции проверяется, вызывалась ли функция ранее
+
+- Аргументы: callBack , [array of dependencies]
+- Возвращает: Закэшированное значение выполненной функции, которое обновляется только при изменении зависимостей.
+
+```code
+useCallback(fn, deps) ~ useMemo(() => fn, deps)
+```
+
+```jsx
+const validateWithoutCallback = (data) => {
+  console.log(data)
+}
+
+const validateWithCallback = useCallback((data) => {
+  console.log(data)
+}, [])
+```
