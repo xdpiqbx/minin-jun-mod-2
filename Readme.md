@@ -140,3 +140,68 @@ const validateWithCallback = useCallback((data) => {
   console.log(data)
 }, [])
 ```
+
+---
+
+## HOC
+
+- Аргументы: callBack , [array of dependencies]
+- Возвращает: Закэшированное значение выполненной функции, которое обновляется только при изменении зависимостей.
+- Разделяет композицию и использует один и тот же функционал в разных местах
+- HOC - функция которая принимает компонент и возвращает или новый компонент или обновлённый компонент
+- в HOC заключается логика работы с компонентами
+- все HOC начинать с with (withLogin, withPropsStyles)
+
+```jsx
+// withLogin
+const withLogin = (Component) => (props) => {
+  const isLogin = localStorage.getItem('auth')
+  return <>{isLogin ? <Component {...props} /> : <SmallTitle>Auth</SmallTitle>}</>
+}
+```
+
+```jsx
+// withPropsStyles
+const withPropsStyles = (Component) => (props) => {
+  return (
+    <CardWrapper>
+      <Component {...props} name="New Name" />
+    </CardWrapper>
+  )
+}
+```
+
+```jsx
+import Component from './someComponent'
+import withLogin from './withLogin'
+import withPropsStyles from './withPropsStyles'
+const HOCExample = () => {
+  const ComponentWithAuth = withLogin(Component)
+  const ComponentWithPropsStyles = withPropsStyles(Component)
+  const NewComponent = withPropsStyles(ComponentWithAuth)
+  return (
+    <>
+      <CardWrapper>
+        <SmallTitle>1. Обычный компонент</SmallTitle>
+        <Component />
+      </CardWrapper>
+      <CardWrapper>
+        <SmallTitle>2. Функциональный HOC</SmallTitle>
+        <ComponentWithAuth />
+      </CardWrapper>
+      <CardWrapper>
+        <SmallTitle>3. HOC With Styles and Props</SmallTitle>
+        <ComponentWithPropsStyles />
+      </CardWrapper>
+      <CardWrapper>
+        <SmallTitle>4. Composed HOC</SmallTitle>
+        <NewComponent />
+      </CardWrapper>
+    </>
+  )
+}
+```
+
+---
+
+## HOC
