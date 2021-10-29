@@ -1,5 +1,7 @@
 # 11. Расширенные хуки и базовая оптимизация
 
+- Помнить о понятии [поверхносной сверки в React](https://github.com/facebook/react/blob/v16.8.6/packages/shared/shallowEqual.js)
+
 ## useRef
 
 ```jsx
@@ -220,6 +222,41 @@ const HOCExample = () => {
 - React.Memo не будет работать если компонент использует `useState` (если `useState` задан с наружи)
 - Функциональный объект равен только самому себе
 
+```jsx
+const LogOutBtn = ({ onLogOut }) => {
+  useEffect(() => {
+    console.log('render LogOutBtn')
+  })
+  return <button onClick={onLogOut}>Log Out</button>
+}
 ```
-Memo with useCallback -> 03:30
+
+```jsx
+// const MemoizedLogOutButton = React.memo(LogOutBtn, (prevProps, nextProps) => {
+//   if (prevProps !== nextProps) return false
+//   return true
+// })
+
+function areEqual(prevState, nextState) {
+  if (prevState.onLogOut !== nextState.onLogOut) return false
+  return true
+}
+
+const MemoizedLogOutButton = React.memo(LogOutBtn, areEqual)
+```
+
+```jsx
+const MemoWithUseCallbackExample = (props) => {
+  const [state, setState] = useState(false)
+  const handleLogOut = useCallback(() => {
+    localStorage.removeItem('auth')
+  }, [props])
+
+  return (
+    <>
+      <button onClick={() => setState(!state)}>initiate rerender</button>
+      <MemoizedLogOutButton onLogOut={handleLogOut} />
+    </>
+  )
+}
 ```
