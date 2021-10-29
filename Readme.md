@@ -304,3 +304,49 @@ const CloneElementExample = () => {
 
 export { CloneElementExample }
 ```
+
+---
+
+## React.Children
+
+`props.children` - это объект, содержащий описание детей. Мы имеем доступ только к чтению.
+
+`React.Children` - это утилита, предоставляемая `React`, которая предоставляет функции для работы с непрозрачной структурой данных `this.props.children`
+
+### `React.children` Functions
+
+- `React.Children.map(children, function[(thisArg)])`
+
+- `React.Children.count(children)`
+
+- `React.Children.toArray(children)`
+
+```jsx
+const FormComponent = ({ children }) => {
+  const [data, setData] = useState({})
+
+  useEffect(() => {
+    console.log(data)
+  }, [data])
+
+  const handleChange = (target) => {
+    setData((prevState) => ({ ...prevState, [target.name]: target.value }))
+  }
+
+  return React.Children.map(children, (child) => {
+    const config = {
+      ...child.props,
+      onChange: handleChange,
+      value: data[child.props.name] || ''
+    }
+    return React.cloneElement(child, config)
+  })
+}
+```
+
+```jsx
+<FormComponent>
+  <TextField name="email" label="Email" />
+  <TextField name="password" label="Password" type="password" />
+</FormComponent>
+```
