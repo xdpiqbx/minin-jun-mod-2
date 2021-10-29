@@ -211,7 +211,7 @@ const HOCExample = () => {
 - React.Memo это HOC
 - `useMemo` - мемоизирует функции, `React.Memo` - мемоизирует компонент
 
-### Когда использовать
+### Когда использовать `React.Memo`
 
 - Если компонент часто ререндерится
 - Если компоненту передаются одинаковые параметры при нескольких ререндерах
@@ -259,4 +259,48 @@ const MemoWithUseCallbackExample = (props) => {
     </>
   )
 }
+```
+
+---
+
+## React.cloneElement
+
+`React.cloneElement( element, [config], [...children] )`
+
+Клонирует и возвращает новый `React` элемент, используя элемент в качестве отправной точки.
+
+`config` должен содержать все новые пропсы, `key`, а также `ref`.
+
+Полученный элемент будет иметь пропсы исходного элемента, а новые пропсы будут поверхностно слиты воедино.
+
+Новые дочерние элементы заменят существующие.
+
+`key` и `ref` из исходного элемента будут сохранены, если в `config` не было передано `key` и `ref`.
+
+### Когда использовать `React.cloneElement`
+
+- Если невозможно изменить параметры
+- Если необходимо изменить или добавить параметры
+
+```jsx
+import React from 'react'
+import CardWrapper from '../../common/Card'
+import TextField from '../../common/form/textField'
+
+import SmallTitle from '../../common/typografy/smallTitle'
+const CloneElementExample = () => {
+  const field = <TextField label="email" name="email" />
+  const handleChange = (target) => {
+    console.log('change => ', target)
+  }
+  return (
+    <CardWrapper>
+      <SmallTitle>Пример</SmallTitle>
+      {field}
+      {React.cloneElement(field, { onChange: handleChange, label: 'Cloned Email' })}
+    </CardWrapper>
+  )
+}
+
+export { CloneElementExample }
 ```
