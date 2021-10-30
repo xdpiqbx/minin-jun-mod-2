@@ -350,3 +350,7 @@ const FormComponent = ({ children }) => {
   <TextField name="password" label="Password" type="password" />
 </FormComponent>
 ```
+
+---
+
+## 9. Создание переиспользуемого компонента формы - DONE
