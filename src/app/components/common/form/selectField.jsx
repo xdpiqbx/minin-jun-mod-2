@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 const SelectField = ({ label, value, onChange, defaultOption, options, error }) => {
@@ -8,6 +8,8 @@ const SelectField = ({ label, value, onChange, defaultOption, options, error }) 
   const getInputClasses = () => {
     return 'form-select' + (error ? ' is-invalid' : '')
   }
+
+  useEffect(() => console.log('Render SelectField'))
 
   const optionsArray =
     !Array.isArray(options) && typeof options === 'object'
@@ -52,4 +54,4 @@ SelectField.propTypes = {
   options: PropTypes.oneOfType([PropTypes.object, PropTypes.array])
 }
 
-export default SelectField
+export default React.memo(SelectField)
