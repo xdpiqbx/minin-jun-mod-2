@@ -354,3 +354,38 @@ const FormComponent = ({ children }) => {
 ---
 
 ## 9. Создание переиспользуемого компонента формы - DONE
+
+---
+
+## 10 React.memo
+
+Внимательно пересмотреть что передаю в компонент!
+
+Через профайлер пересмотреть что заставляет срабатывать рендер
+
+Настройки профайлера -> `Record why each component rendered while profiling.`
+
+Возможно передаю методы или данные которые постоянно меняются и к ним предварительно нужно применить `useCallback`, `useMemo`
+
+```jsx
+import React, { useState } from 'react'
+import PropTypes from 'prop-types'
+const TextField = ({ label, type, name, value, onChange, error }) => {
+  const [data, setData] = useState({})
+  // ... Logic
+  return ( ... )
+}
+export default React.memo(TextField)
+```
+
+С добавлением `React.memo` структура объекта меняется
+
+```jsx
+  const clonedElements = React.Children.map(children, (child) => {
+    const childType = typeof child.type
+  }
+```
+
+теперь `childType` компонента не 'function', а 'object'
+
+P.S. В зависимости добавлять всё что не в зоне видимости функции
