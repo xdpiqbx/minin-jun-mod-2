@@ -391,3 +391,14 @@ export default React.memo(TextField)
 P.S. В зависимости добавлять всё что не в зоне видимости функции
 
 ## 11. Автофокус поля при открытии формы
+
+```jsx
+const handleKeyDown = useCallback((event) => {
+  if (event.keyCode === 13) {
+    event.preventDefault()
+    const form = event.target.form
+    const indexField = Array.prototype.indexOf.call(form, event.target)
+    form.elements[indexField + 1].focus()
+  }
+}, [])
+```

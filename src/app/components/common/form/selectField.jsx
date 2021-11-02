@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const SelectField = ({ label, value, onChange, defaultOption, options, error }) => {
+const SelectField = ({ label, value, onChange, defaultOption, options, error, ...rest }) => {
   const handleChange = ({ target }) => {
     onChange({ name: target.name, value: target.value })
   }
@@ -28,6 +28,7 @@ const SelectField = ({ label, value, onChange, defaultOption, options, error }) 
         name="profession"
         value={value}
         onChange={handleChange}
+        {...rest}
       >
         <option disabled value="">
           {defaultOption}
