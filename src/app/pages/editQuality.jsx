@@ -8,12 +8,25 @@ const EditQualityPage = () => {
   const id = useParams().id;
   const qualityEndPoint = `http://localhost:4000/api/v1/quality/${id}`;
   const handleSubmit = data => {
-    console.log(data);
     const sendDataToDb = async data => {
-      await axios
-        .put(qualityEndPoint, data)
-        .then(res => console.log(res.data.content));
+      try {
+        await axios
+          .put(qualityEndPoint + 'sdf', data)
+          .then(res => console.log(res.data.content));
+      } catch (error) {
+        console.log(error.request);
+
+        const expectedErrors =
+          error.response &&
+          error.response.status >= 400 &&
+          error.response.status < 500;
+
+        !expectedErrors
+          ? console.log('Unexpected Error')
+          : console.log('Expected Error');
+      }
     };
+
     sendDataToDb(data);
   };
   useEffect(() => {
