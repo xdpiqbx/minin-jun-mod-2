@@ -20,3 +20,17 @@
 - Отображение оповещений для пользователя
 - Кастомные хуки
 - Контекст
+
+---
+
+## [Install MongoDB Community Edition on Windows](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/#install-mongodb-community-edition)
+
+---
+
+## [AXIOS](https://axios-http.com/docs/intro)
+
+```code
+npm install axios
+```
+
+6. Получение данных
