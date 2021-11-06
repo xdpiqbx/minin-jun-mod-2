@@ -1,12 +1,37 @@
-import React from "react";
-import EditForm from "../components/ui/editForm";
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router';
+import EditForm from '../components/ui/editForm';
 
 const EditQualityPage = () => {
-    return (
-        <>
-            <h1>Edit Quality Page</h1> <EditForm />
-        </>
-    );
+  const [quality, setQuality] = useState(null);
+  const id = useParams().id;
+  const qualityEndPoint = `http://localhost:4000/api/v1/quality/${id}`;
+  const handleSubmit = data => {
+    console.log(data);
+    const sendDataToDb = async data => {
+      await axios
+        .put(qualityEndPoint, data)
+        .then(res => console.log(res.data.content));
+    };
+    sendDataToDb(data);
+  };
+  useEffect(() => {
+    const fetchQualities = async () => {
+      const { data } = await axios.get(qualityEndPoint);
+      setQuality(data.content);
+    };
+    fetchQualities();
+  }, [qualityEndPoint]);
+  if (!quality) {
+    return 'Loading...';
+  }
+  return (
+    <>
+      <h1>Edit Quality Page</h1>{' '}
+      <EditForm data={quality} onSubmit={handleSubmit} />
+    </>
+  );
 };
 
 export default EditQualityPage;
