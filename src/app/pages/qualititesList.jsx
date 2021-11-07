@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import QualitiesTable from '../components/ui/qualitiesTable';
-import axios from 'axios';
+import qualityService from '../services/qualityService';
 
 const QualitiesListPage = () => {
   const [qualities, setQualities] = useState([]);
@@ -9,8 +9,7 @@ const QualitiesListPage = () => {
 
   useEffect(() => {
     const fetchQualities = async () => {
-      const { data } = await axios.get(`http://localhost:4000/api/v1/quality`);
-      setQualities(data.content);
+      qualityService.fetchAll().then(data => setQualities(data.content));
     };
     fetchQualities();
   }, []);

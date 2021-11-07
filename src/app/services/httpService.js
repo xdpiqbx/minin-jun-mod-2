@@ -13,7 +13,6 @@ axios.interceptors.response.use(
 
     if (!expectedErrors) {
       toast.error('Something went wrong. Try again later');
-      // toast('Unexpected Error (catched in interceptor)');
     }
     return Promise.reject(error);
   }

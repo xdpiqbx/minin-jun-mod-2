@@ -1,33 +1,44 @@
-import httpService from '../services/httpService';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import EditForm from '../components/ui/editForm';
+import qualityService from '../services/qualityService';
+import { toast } from 'react-toastify';
 
 const EditQualityPage = () => {
   const [quality, setQuality] = useState(null);
+  // const [, setErrors] = useState(null);
   const id = useParams().id;
-  const qualityEndPoint = `quality/${id}`;
-  const handleSubmit = data => {
-    const sendDataToDb = async data => {
-      try {
-        await httpService
-          .put(qualityEndPoint, data)
-          .then(res => console.log(res.data.content));
-      } catch (error) {
-        // console.log(error.request);
-        console.log('Error=>', error);
-      }
-    };
 
-    sendDataToDb(data);
+  const updateQuality = async content => {
+    try {
+      const data = await qualityService.update(id, content);
+      return data;
+    } catch (error) {
+      const { message } = error.response.data;
+      // setErrors({ message, status });
+      toast.error(message);
+    }
   };
+
+  const getQuality = async id => {
+    try {
+      const data = await qualityService.get(id);
+      return data;
+    } catch (error) {
+      const { message } = error.response.data;
+      // setErrors({ message, status });
+      toast.error(message);
+    }
+  };
+
+  const handleSubmit = data => {
+    updateQuality(data);
+  };
+
   useEffect(() => {
-    const fetchQualities = async () => {
-      const { data } = await httpService.get(qualityEndPoint);
-      setQuality(data.content);
-    };
-    fetchQualities();
-  }, [qualityEndPoint]);
+    getQuality(id).then(data => setQuality(data.content));
+  }, [id]);
+
   if (!quality) {
     return 'Loading...';
   }
