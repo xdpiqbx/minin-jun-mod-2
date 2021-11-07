@@ -3,6 +3,21 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import EditForm from '../components/ui/editForm';
 
+axios.interceptors.response.use(
+  res => res,
+  error => {
+    const expectedErrors =
+      error.response &&
+      error.response.status >= 400 &&
+      error.response.status < 500;
+
+    if (!expectedErrors) {
+      console.log('Unexpected Error (catched in interceptor)');
+    }
+    return Promise.reject(error);
+  }
+);
+
 const EditQualityPage = () => {
   const [quality, setQuality] = useState(null);
   const id = useParams().id;
@@ -11,19 +26,11 @@ const EditQualityPage = () => {
     const sendDataToDb = async data => {
       try {
         await axios
-          .put(qualityEndPoint + 'sdf', data)
+          .put(qualityEndPoint, data)
           .then(res => console.log(res.data.content));
       } catch (error) {
-        console.log(error.request);
-
-        const expectedErrors =
-          error.response &&
-          error.response.status >= 400 &&
-          error.response.status < 500;
-
-        !expectedErrors
-          ? console.log('Unexpected Error')
-          : console.log('Expected Error');
+        // console.log(error.request);
+        console.log('Error=>', error);
       }
     };
 
