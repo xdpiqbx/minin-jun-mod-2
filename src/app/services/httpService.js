@@ -1,5 +1,8 @@
 import axios from 'axios';
+import config from '../config.json';
+import { toast } from 'react-toastify';
 
+axios.defaults.baseURL = config.apiEndPoint;
 axios.interceptors.response.use(
   res => res,
   error => {
@@ -9,7 +12,8 @@ axios.interceptors.response.use(
       error.response.status < 500;
 
     if (!expectedErrors) {
-      console.log('Unexpected Error (catched in interceptor)');
+      toast.error('Something went wrong. Try again later');
+      // toast('Unexpected Error (catched in interceptor)');
     }
     return Promise.reject(error);
   }

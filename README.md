@@ -37,3 +37,9 @@ npm install axios
 - post - создаю данные
 - put - обновляю данные
 - delete - удаляю данные
+
+---
+
+### [React-Toastify](https://www.npmjs.com/package/react-toastify)
+
+![React-Toastify](https://user-images.githubusercontent.com/5574267/130804494-a9d2d69c-f170-4576-b2e1-0bb7f13dd92d.gif)
