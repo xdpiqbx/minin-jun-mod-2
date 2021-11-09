@@ -43,3 +43,42 @@ npm install axios
 ### [React-Toastify](https://www.npmjs.com/package/react-toastify)
 
 ![React-Toastify](https://user-images.githubusercontent.com/5574267/130804494-a9d2d69c-f170-4576-b2e1-0bb7f13dd92d.gif)
+
+---
+
+### Context
+
+```jsx
+export const QualitiesContext = React.createContext();
+
+<QualitiesContext.Provider value={'Simple text'}>
+  ...
+</QualitiesContext.Provider>;
+```
+
+```jsx
+import { QualitiesContext } from '../../App';
+const data = useContext(QualitiesContext);
+```
+
+```jsx
+/// FINAL
+
+import React, { useContext } from 'react';
+
+const QualitiesContext = React.createContext();
+
+export const useQualities = () => {
+  return useContext(QualitiesContext);
+};
+
+export const QualitiesProvider = ({ children }) => {
+  return (
+    <QualitiesContext.Provider value={'Simple text'}>
+      {children}
+    </QualitiesContext.Provider>
+  );
+};
+```
+
+--- Start from 18. useQualities
