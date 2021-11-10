@@ -120,3 +120,7 @@ export const QualitiesProvider = ({ children }) => {
   );
 };
 ```
+
+---
+
+## 19. useQualities обновление данных

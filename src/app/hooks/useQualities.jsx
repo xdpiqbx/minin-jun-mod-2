@@ -9,8 +9,9 @@ export const useQualities = () => {
 
 export const QualitiesProvider = ({ children }) => {
   const [qualities, setQualities] = useState([]);
-  const [error, setError] = useState(null);
+  const [, setError] = useState(null);
   const [isLoading, setLoading] = useState(true);
+
   useEffect(() => {
     const getQualities = async () => {
       try {
@@ -24,9 +25,33 @@ export const QualitiesProvider = ({ children }) => {
     };
     getQualities();
   }, []);
-  console.log(error);
+
+  const getQualitie = id => {
+    return qualities.find(qual => qual._id === id);
+  };
+
+  const updateQuality = async ({ _id: id, ...data }) => {
+    try {
+      const { content } = await qualityService.update(id, data);
+      setQualities(prevState =>
+        prevState.map(item => {
+          if (item._id === content._id) {
+            return content;
+          }
+          return item;
+        })
+      );
+      return content;
+    } catch (error) {
+      const { message } = error.response.data;
+      setError(message);
+    }
+  };
+
   return (
-    <QualitiesContext.Provider value={{ qualities, isLoading }}>
+    <QualitiesContext.Provider
+      value={{ qualities, getQualitie, updateQuality }}
+    >
       {!isLoading ? children : '<h1>Qualities Loading ... </h1>'}
     </QualitiesContext.Provider>
   );
