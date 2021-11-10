@@ -124,3 +124,11 @@ export const QualitiesProvider = ({ children }) => {
 ---
 
 ## 19. useQualities обновление данных
+
+---
+
+## 20. useQualities создание данных
+
+---
+
+## 21. Редирект - DONE!
