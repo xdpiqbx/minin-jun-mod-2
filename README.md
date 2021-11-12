@@ -135,7 +135,32 @@ export const QualitiesProvider = ({ children }) => {
 
 ---
 
-## 22. useQualities Удаление данных - DONE
+## 22. useQualities Удаление данных
+
+---
+
+## 23. Optimistic vs Pessimistic updates - done
+
+Optimistic - когда НЕ дожидаюсь подтверждения от сервера
+Pessimistic - когда дожидаюсь подтверждения от сервера
+
+```jsx
+// Optimistic
+const deleteQuality = async id => {
+  prevState.current = qualities;
+  setQualities(prevState => {
+    return prevState.filter(item => item._id !== id);
+  });
+  try {
+    await qualityService.delete(id);
+  } catch (error) {
+    const { message } = error.response.data;
+    toast('Object not deleted');
+    setQualities(prevState.current);
+    setError(message);
+  }
+};
+```
 
 ```code
 git commit -m 'video ### done'
