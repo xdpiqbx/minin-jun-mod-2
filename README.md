@@ -131,4 +131,8 @@ export const QualitiesProvider = ({ children }) => {
 
 ---
 
-## 21. Редирект - DONE!
+## 21. Редирект
+
+---
+
+## 22. useQualities Удаление данных - DONE!
