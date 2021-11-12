@@ -135,4 +135,9 @@ export const QualitiesProvider = ({ children }) => {
 
 ---
 
-## 22. useQualities Удаление данных - DONE!
+## 22. useQualities Удаление данных - DONE
+
+```code
+git commit -m 'video ### done'
+git push -u origin 013-api-and-custom-hooks
+```
