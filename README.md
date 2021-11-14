@@ -163,6 +163,6 @@ const deleteQuality = async id => {
 ```
 
 ```code
-git commit -m 'video ### done'
+git commit -m 'video 24 done'
 git push -u origin 013-api-and-custom-hooks
 ```
