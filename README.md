@@ -120,3 +120,20 @@ UserProvider.propTypes = {
 
 export default UserProvider;
 ```
+
+---
+
+## 27. useProfessions
+
+```jsx
+// professionService.js
+import httpService from "./httpService";
+const professionEndpoint = "profession/";
+const professionService = {
+    get: async () => {
+        const { data } = await httpService.get(professionEndpoint);
+        return data;
+    }
+};
+export default professionService;
+```
