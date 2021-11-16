@@ -1,10 +1,3 @@
-# 013-fast-company
-
-## useUsers hook
-
-```jsx
-// === >>> useUsers.jsx
-
 import React, { useContext } from "react";
 import PropTypes from "prop-types";
 
@@ -26,18 +19,3 @@ UserProvider.propTypes = {
 };
 
 export default UserProvider;
-```
-
-```jsx
-// === >>> users.jsx
-
-import React from "react";
-// ...
-import UserProvider from "../hooks/useUsers";
-const Users = () => {
-    // ...
-    return <UserProvider>...</UserProvider>;
-};
-
-export default Users;
-```
