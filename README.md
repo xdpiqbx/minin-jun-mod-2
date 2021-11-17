@@ -142,4 +142,4 @@ export default professionService;
 
 29.Решение useQualities
 
-2:30
+hook - useQualities done
