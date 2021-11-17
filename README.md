@@ -137,3 +137,9 @@ const professionService = {
 };
 export default professionService;
 ```
+
+---
+
+29.Решение useQualities
+
+2:30
