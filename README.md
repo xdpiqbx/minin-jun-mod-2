@@ -1,145 +1,55 @@
-# 013-fast-company
+# 14. Firebase и трансформеры данных
 
-## useUsers hook
+## 2. Создание Базы данных в Firebase
 
-```jsx
-// === >>> useUsers.jsx
-
-import React, { useContext } from "react";
-import PropTypes from "prop-types";
-
-const UserContext = React.createContext();
-
-export const useUser = () => {
-    return useContext(UserContext);
-};
-
-const UserProvider = ({ children }) => {
-    return <UserContext.Provider>{children}</UserContext.Provider>;
-};
-
-UserProvider.propTypes = {
-    children: PropTypes.oneOfType([
-        PropTypes.node,
-        PropTypes.arrayOf(PropTypes.node)
-    ])
-};
-
-export default UserProvider;
-```
-
-```jsx
-// === >>> users.jsx
-
-import React from "react";
-// ...
-import UserProvider from "../hooks/useUsers";
-const Users = () => {
-    // ...
-    return <UserProvider>...</UserProvider>;
-};
-
-export default Users;
-```
-
----
-
-## 26. User Service
-
-```js
-import httpService from "./httpService";
-const userEndpoint = "user/";
-const userService = {
-    get: async () => {
-        const { data } = await httpService.get(userEndpoint);
-        return data;
-    }
-};
-export default userService;
-```
-
-```jsx
-// === >>> useUsers.jsx
-
-import React, { useContext, useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import userService from "../services/userService";
-import { toast } from "react-toastify";
-
-const UserContext = React.createContext();
-
-export const useUser = () => {
-    return useContext(UserContext);
-};
-
-const UserProvider = ({ children }) => {
-    const [users, setUsers] = useState([]);
-    const [isLoading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-
-    useEffect(() => {
-        getUsers();
-    }, []);
-
-    useEffect(() => {
-        if (error !== null) {
-            toast(error);
-            setError(null);
+```json
+{
+    "profession": {
+        "67rdca3eeb7f6fgeed471818": {
+            "_id": "67rdca3eeb7f6fgeed471818",
+            "name": "Доктор"
         }
-    }, [error]);
-
-    async function getUsers() {
-        try {
-            const { content } = await userService.get();
-            setUsers(content);
-            setLoading(false);
-        } catch (error) {
-            errorCatcher(error);
+    },
+    "quality": {
+        "67rdca3eeb7f6fgeed471100": {
+            "_id": "67rdca3eeb7f6fgeed471100",
+            "color": "secondary",
+            "name": "Странный"
+        },
+        "67rdca3eeb7f6fgeed471102": {
+            "_id": "67rdca3eeb7f6fgeed471102",
+            "color": "info",
+            "name": "Красавчик"
+        },
+        "67rdca3eeb7f6fgeed471198": {
+            "_id": "67rdca3eeb7f6fgeed471198",
+            "color": "primary",
+            "name": "Нудила"
+        }
+    },
+    "user": {
+        "67rdca3eeb7f6fgeed471815": {
+            "_id": "67rdca3eeb7f6fgeed471815",
+            "completedMeetings": 36,
+            "email": "Jony7351@tw.com",
+            "name": "Джон Дориан",
+            "password": "b2C!9bmE",
+            "profession": "67rdca3eeb7f6fgeed471818",
+            "qualities": [
+                "67rdca3eeb7f6fgeed471198",
+                "67rdca3eeb7f6fgeed471102",
+                "67rdca3eeb7f6fgeed471100"
+            ],
+            "rate": 2.5
         }
     }
-
-    function errorCatcher(error) {
-        const { message } = error.response.data;
-        setError(message);
-        setLoading(false);
-    }
-
-    return (
-        <UserContext.Provider value={{ users }}>
-            {!isLoading ? children : "Loading..."}
-        </UserContext.Provider>
-    );
-};
-
-UserProvider.propTypes = {
-    children: PropTypes.oneOfType([
-        PropTypes.node,
-        PropTypes.arrayOf(PropTypes.node)
-    ])
-};
-
-export default UserProvider;
+}
 ```
 
----
+## 3. Запросы Firebase
 
-## 27. useProfessions
+## 4. Axios intercepters. Request. Модификация URL
 
-```jsx
-// professionService.js
-import httpService from "./httpService";
-const professionEndpoint = "profession/";
-const professionService = {
-    get: async () => {
-        const { data } = await httpService.get(professionEndpoint);
-        return data;
-    }
-};
-export default professionService;
-```
+## 5. Axios intercepters. Response. Трансформация данных
 
----
-
-29.Решение useQualities
-
-hook - useQualities done
+## 6. Инициализация Mock данных
