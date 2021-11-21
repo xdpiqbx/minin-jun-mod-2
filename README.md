@@ -48,6 +48,24 @@
 
 ## 3. Запросы Firebase
 
+### [Firebase Database REST API](https://firebase.google.com/docs/reference/rest/database)
+
+#### GET - Reading Data
+
+```url
+    https://fast-company-wdpiqbw-default-rtdb.europe-west1.firebasedatabase.app/profession.json
+    https://fast-company-wdpiqbw-default-rtdb.europe-west1.firebasedatabase.app/user.json
+    https://fast-company-wdpiqbw-default-rtdb.europe-west1.firebasedatabase.app/user/67rdca3eeb7f6fgeed471815/name.json
+```
+
+#### PUT - Writing Data
+
+#### POST - Pushing Data
+
+#### PATCH - Updating Data
+
+#### DELETE - Removing Data
+
 ## 4. Axios intercepters. Request. Модификация URL
 
 ## 5. Axios intercepters. Response. Трансформация данных
