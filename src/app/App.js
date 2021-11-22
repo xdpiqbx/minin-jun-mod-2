@@ -10,25 +10,22 @@ import { ProfessionPropvider } from "./hooks/useProseffion";
 import { QualitiesProvider } from "./hooks/useQualities";
 
 function App() {
-    return (
-        <div>
-            <NavBar />
-            <Switch>
-                <QualitiesProvider>
-                    <ProfessionPropvider>
-                        <Route
-                            path="/users/:userId?/:edit?"
-                            component={Users}
-                        />
-                        <Route path="/login/:type?" component={Login} />
-                    </ProfessionPropvider>
-                </QualitiesProvider>
-                <Route path="/" exact component={Main} />
-                <Redirect to="/" />
-            </Switch>
-            <ToastContainer />
-        </div>
-    );
+  return (
+    <div>
+      <NavBar />
+      <QualitiesProvider>
+        <ProfessionPropvider>
+          <Switch>
+            <Route path="/users/:userId?/:edit?" component={Users} />
+            <Route path="/login/:type?" component={Login} />
+            <Route path="/" exact component={Main} />
+            <Redirect to="/" />
+          </Switch>
+        </ProfessionPropvider>
+      </QualitiesProvider>
+      <ToastContainer />
+    </div>
+  );
 }
 
 export default App;
