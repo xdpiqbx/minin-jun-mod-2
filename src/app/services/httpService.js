@@ -10,7 +10,6 @@ axios.interceptors.request.use(
       const containSlash = /\/$/gi.test(config.url);
       config.url =
         (containSlash ? config.url.slice(0, -1) : config.url) + ".json";
-      console.log(config.url);
     }
     return config;
   },
@@ -19,8 +18,21 @@ axios.interceptors.request.use(
   }
 );
 
+const transformData = (data) => {
+  return data
+    ? Object.keys(data).map((key) => ({
+        ...data[key]
+      }))
+    : [];
+};
 axios.interceptors.response.use(
-  (res) => res,
+  (res) => {
+    if (configFile.isFirebase) {
+      res.data = { content: transformData(res.data) };
+      console.log(res.data);
+    }
+    return res;
+  },
   (error) => {
     const expectedErrors =
       error.response &&

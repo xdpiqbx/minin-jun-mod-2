@@ -60,6 +60,14 @@
 
 #### PUT - Writing Data
 
+#### POST - Pushing Data
+
+#### PATCH - Updating Data
+
+#### DELETE - Removing Data
+
+## 4. Axios intercepters. Request. Модификация URL
+
 ```json
 {
   "apiEndPoint": "http://localhost:4000/api/v1/"
@@ -68,7 +76,8 @@
 
 ```json
 {
-  "apiEndPoint": "https://fast-company-wdpiqbw-default-rtdb.europe-west1.firebasedatabase.app/"
+  "apiEndPoint": "https://fast-company-wdpiqbw-default-rtdb.europe-west1.firebasedatabase.app/",
+  "isFirebase": true
 }
 ```
 
@@ -91,14 +100,36 @@ axios.interceptors.request.use(
 );
 ```
 
-#### POST - Pushing Data
-
-#### PATCH - Updating Data
-
-#### DELETE - Removing Data
-
-## 4. Axios intercepters. Request. Модификация URL
-
 ## 5. Axios intercepters. Response. Трансформация данных
+
+```js
+const transformData = (data) => {
+  return data
+    ? Object.keys(data).map((key) => ({
+        ...data[key]
+      }))
+    : [];
+};
+axios.interceptors.response.use(
+  (res) => {
+    if (configFile.isFirebase) {
+      res.data = { content: transformData(res.data) };
+      console.log(res.data);
+    }
+    return res;
+  },
+  (error) => {
+    const expectedErrors =
+      error.response &&
+      error.response.status >= 400 &&
+      error.response.status < 500;
+    if (!expectedErrors) {
+      console.log(error);
+      toast.error("Something went wrong. Try again later");
+    }
+    return Promise.reject(error);
+  }
+);
+```
 
 ## 6. Инициализация Mock данных
