@@ -29,7 +29,7 @@ axios.interceptors.response.use(
   (res) => {
     if (configFile.isFirebase) {
       res.data = { content: transformData(res.data) };
-      console.log(res.data);
+      // console.log(res.data);
     }
     return res;
   },
