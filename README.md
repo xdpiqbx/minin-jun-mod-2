@@ -37,3 +37,7 @@ AuthProvider.propTypes = {
 
 export default AuthProvider;
 ```
+
+## 7. Метод Sign Up (Регистрация) - DONE
+
+## 8. Создание экземпляров Axios
