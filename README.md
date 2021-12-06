@@ -148,3 +148,13 @@ export default AuthProvider;
 ![jwt](https://jwt.io/img/pic_logo.svg)
 
 [JWT](https://jwt.io/)
+
+## 11. Переменные окружения. DotEnv
+
+[Adding Custom Environment Variables](https://create-react-app.dev/docs/adding-custom-environment-variables/)
+
+---
+
+![dotenv](https://raw.githubusercontent.com/motdotla/dotenv/master/dotenv.png)
+
+[dotenv](https://www.npmjs.com/package/dotenv)
