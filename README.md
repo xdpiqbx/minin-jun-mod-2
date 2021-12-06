@@ -158,3 +158,5 @@ export default AuthProvider;
 ![dotenv](https://raw.githubusercontent.com/motdotla/dotenv/master/dotenv.png)
 
 [dotenv](https://www.npmjs.com/package/dotenv)
+
+## 12. LocalStorage Service - DONE
