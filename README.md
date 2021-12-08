@@ -160,3 +160,5 @@ export default AuthProvider;
 [dotenv](https://www.npmjs.com/package/dotenv)
 
 ## 12. LocalStorage Service - DONE
+
+## 13. Обработка ошибок регистрации
