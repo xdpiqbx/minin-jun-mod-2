@@ -162,3 +162,41 @@ export default AuthProvider;
 ## 12. LocalStorage Service - DONE
 
 ## 13. Обработка ошибок регистрации
+
+## 15. решение ДЗ
+
+```js
+const httpAuth = axios.create();
+// ...
+const key = process.env.REACT_APP_FIREBASE_KEY;
+const url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${key}`;
+try {
+  const { data } = await httpAuth.post(url, {
+    email,
+    password,
+    returnSecureToken: true
+});
+// ...
+```
+
+Сократил запись через axios
+
+```js
+const httpAuth = axios.create({
+  baseURL: "https://identitytoolkit.googleapis.com/v1/",
+  params: {
+    key: process.env.REACT_APP_FIREBASE_KEY
+  }
+});
+  // ...
+const url = `accounts:signInWithPassword`;
+try {
+  const { data } = await httpAuth.post(url, {
+    email,
+    password,
+    returnSecureToken: true
+});
+// ...
+```
+
+Начать с 4:37
