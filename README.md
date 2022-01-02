@@ -1,6 +1,6 @@
 # 16. Авторизация и аутентификация. Часть 2
 
-## 5. Получение User data при загрузке - start from here
+## 6. Refresh tokens - start from here
 
 ---
 
