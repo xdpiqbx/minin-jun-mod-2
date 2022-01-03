@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { validator } from "../../utils/validator";
+import { validator } from "../../utils/ validator";
 import TextField from "../common/form/textField";
 import SelectField from "../common/form/selectField";
 import RadioField from "../common/form/radio.Field";
@@ -22,7 +22,6 @@ const RegisterForm = () => {
         licence: false
     });
     const { signUp } = useAuth();
-    const [errors, setErrors] = useState({});
     const { qualities } = useQualities();
     const qualitiesList = qualities.map((q) => ({
         label: q.name,
@@ -33,6 +32,7 @@ const RegisterForm = () => {
         label: p.name,
         value: p._id
     }));
+    const [errors, setErrors] = useState({});
 
     const handleChange = (target) => {
         setData((prevState) => ({
@@ -54,7 +54,7 @@ const RegisterForm = () => {
                 message: "Имя обязательно для заполнения"
             },
             min: {
-                message: "Имя должно состаять миниму из 3 символов",
+                message: "Имя должено состаять миниму из 3 символов",
                 value: 3
             }
         },
@@ -103,7 +103,6 @@ const RegisterForm = () => {
             ...data,
             qualities: data.qualities.map((q) => q.value)
         };
-
         try {
             await signUp(newData);
             history.push("/");
@@ -124,7 +123,7 @@ const RegisterForm = () => {
             <TextField
                 label="Имя"
                 name="name"
-                value={data.nmae}
+                value={data.name}
                 onChange={handleChange}
                 error={errors.name}
             />
