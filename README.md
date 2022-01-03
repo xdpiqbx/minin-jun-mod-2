@@ -58,6 +58,36 @@
 016-030 Решение. Переадресация на персональную страницу обновления
 ```
 
+## Final Firebase rules
+
+```json
+{
+    "rules": {
+        "user": {
+            ".read": "auth != null",
+            "$uid": {
+                ".write": "$uid === auth.uid"
+            }
+        },
+        "quality": {
+            ".read": true,
+            ".write": false
+        },
+        "profession": {
+            ".read": true,
+            ".write": false
+        },
+        "comment": {
+            ".read": "auth != null",
+            ".indexOn": ["pageId"],
+            "$cid": {
+                ".write": "auth != null && ((data.child('userId').val() === auth.uid) || (newData.child('userId').val() === auth.uid))"
+            }
+        }
+    }
+}
+```
+
 [**Итоговый проект**](https://drive.google.com/drive/folders/1sjPtxomBL6uYlY09IN96DyXHloGoSHhO)
 
 ---
